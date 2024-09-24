@@ -1,14 +1,14 @@
 import { ItemRepository } from "../../../domain/repository/item-repository";
-import { GetItemsUseCaseOutput } from "./get-item-usecase-output";
-import { GetItemsUseCaseInput } from "./get-items-usecase-input";
+import { GetAllItemUseCaseOutput } from "./get-item-usecase-output";
+import { GetAllItemUseCaseInput } from "./get-items-usecase-input";
 
 export class GetItemsUseCase {
     constructor(private readonly ItemRepository: ItemRepository){}
 
-    execute(input: GetItemsUseCaseInput): GetItemsUseCaseOutput[] {
+    execute(input: GetAllItemUseCaseInput): GetAllItemUseCaseOutput[] {
         const listaDeItems = this.ItemRepository.getAll();
 
-        const output: GetItemsUseCaseOutput[] = [];
+        const output: GetAllItemUseCaseOutput[] = [];
 
         for(const itemdalista of listaDeItems){
             output.push(

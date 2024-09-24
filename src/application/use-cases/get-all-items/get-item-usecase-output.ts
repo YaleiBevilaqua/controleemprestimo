@@ -3,7 +3,7 @@ type ItemTypeOutput = {
     name: string
 }
 
-export type GetItemsUseCaseOutput = {
+export type GetAllItemUseCaseOutput = {
     id: string;
     name: string;
     itemType: ItemTypeOutput
