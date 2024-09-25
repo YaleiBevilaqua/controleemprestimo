@@ -3,9 +3,21 @@ import { GetAllTipoItemUseCaseInput } from "./get-tipoitems-usecase-input";
 import { GetAllTipoItemUseCaseOutput } from "./get-tipoitems-usecase-output";
 
 export class GetTipoItemsUseCase{
-    constructor (private readonly ItemTypeRepository: ItemTypeRepository){}
+    constructor (private readonly itemTypeRepository: ItemTypeRepository){}
 
-    execute(input: GetAllTipoItemUseCaseInput): GetAllTipoItemUseCaseOutput{
-        return{}
+    execute(input: GetAllTipoItemUseCaseInput): GetAllTipoItemUseCaseOutput[] {
+        const listaDeTipoDeItems = this.itemTypeRepository.getAll()
+
+        const output: GetAllTipoItemUseCaseOutput[] = []
+
+        for(const listaDeItems of listaDeTipoDeItems){
+            output.push(
+                {
+                    id: listaDeItems.getId(),
+                    name: listaDeItems.getName()
+                }
+            )
+        }
+        return output
     }
 }
