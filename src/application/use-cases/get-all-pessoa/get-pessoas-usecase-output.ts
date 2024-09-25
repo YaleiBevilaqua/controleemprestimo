@@ -1,1 +1,4 @@
-export type GetAllPessoaUseCaseOutput = {}
+export type GetAllPessoaUseCaseOutput = {
+    id: string;
+    name: string
+}

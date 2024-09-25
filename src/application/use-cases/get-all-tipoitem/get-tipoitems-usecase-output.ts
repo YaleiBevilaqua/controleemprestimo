@@ -1,1 +1,4 @@
-export type GetAllTipoItemUseCaseOutput = {}
+export type GetAllTipoItemUseCaseOutput = {
+    id: string
+    name: string
+}

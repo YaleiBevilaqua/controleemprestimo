@@ -2,7 +2,7 @@ import { ItemRepository } from "../../../domain/repository/item-repository";
 import { GetAllItemUseCaseOutput } from "./get-item-usecase-output";
 import { GetAllItemUseCaseInput } from "./get-items-usecase-input";
 
-export class GetItemsUseCase {
+export class GetAllItemUseCase {
     constructor(private readonly ItemRepository: ItemRepository){}
 
     execute(input: GetAllItemUseCaseInput): GetAllItemUseCaseOutput[] {
