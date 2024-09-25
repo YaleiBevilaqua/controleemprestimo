@@ -3,9 +3,38 @@ import { GetAllEmprestimoUseCaseInput } from "./get-emprestimos-usecase-input";
 import { GetAllEmprestimoUseCaseOutput } from "./get-emprestimos-usecase-output";
 
 export class GetEmprestimosUseCase{
-    constructor(private readonly EmprestimoRepository: EmprestimoRepository){}
+    constructor(private readonly emprestimoRepository: EmprestimoRepository){}
 
-    execute(input: GetAllEmprestimoUseCaseInput): GetAllEmprestimoUseCaseOutput{
-        return{}
+    execute(input: GetAllEmprestimoUseCaseInput): GetAllEmprestimoUseCaseOutput[]{
+        const listadeEmprestimos =this.emprestimoRepository.getAll();
+
+        const output: GetAllEmprestimoUseCaseOutput[]=[];
+
+        for (const emprestimo of listadeEmprestimos){
+            output.push(
+                {
+                id: emprestimo.getId(),
+                item: {
+                    id: emprestimo.getItem().getId(),
+                    name: emprestimo.getItem().getName()
+                },
+                pessoa: {
+                    id: emprestimo.getPessoa().getId(),
+                    name: emprestimo.getPessoa().getName()
+                },
+                usuario: {
+                    id: emprestimo.getUsuario().getId(),
+                    name: emprestimo.getUsuario().getUsername()
+                },
+                dataEmprestimo: emprestimo.getDataEmprestimo().toISOString(),
+                dataDevolucao: emprestimo.getDataDevolucao()?.toISOString()
+
+
+
+                }
+            )
+        }
+    
+        return output;
     }
 }
