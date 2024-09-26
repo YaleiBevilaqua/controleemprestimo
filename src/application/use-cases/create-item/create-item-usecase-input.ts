@@ -1,1 +1,4 @@
-export type CreateItemUseCaseInput = {}
+export type CreateItemUseCaseInput = {
+    name: string;
+    itemTypeId: string;
+}

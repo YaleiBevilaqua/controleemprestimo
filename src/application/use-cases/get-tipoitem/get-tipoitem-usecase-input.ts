@@ -1,1 +1,3 @@
-export type GetTipoItemUseCaseInput = {}
+export type GetTipoItemUseCaseInput = {
+    id: string;
+}
