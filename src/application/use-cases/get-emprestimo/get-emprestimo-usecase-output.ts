@@ -30,7 +30,7 @@ export type GetEmprestimoUseCaseOutput = {
     id: string | undefined;
     item: item;
     dataEmprestimo: string;
-    dataDevolucao: string;
+    dataDevolucao: string | undefined;
     pessoa: pessoa;
     usuario: usuario;
 }

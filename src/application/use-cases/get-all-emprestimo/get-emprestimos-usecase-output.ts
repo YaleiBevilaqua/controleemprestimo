@@ -31,5 +31,5 @@ export type GetAllEmprestimoUseCaseOutput = {
     pessoa: PessoaOutput;
     usuario: usuarioOutput;
     dataEmprestimo: string;
-    dataDevolucao:string | undefined;
+    dataDevolucao: string | undefined;
 }

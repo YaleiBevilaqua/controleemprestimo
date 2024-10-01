@@ -34,6 +34,7 @@ export class GetEmprestimosUseCase{
                         name: emprestimo.getUsuario().getColaborador().getName(),
                     }
                 },
+                
                 dataEmprestimo: emprestimo.getDataEmprestimo().toISOString(),
                 dataDevolucao: emprestimo.getDataDevolucao()?.toISOString()
 
