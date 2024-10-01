@@ -23,8 +23,8 @@ export class GetEmprestimoUseCase{
                     username: emprestimo.getUsuario().getUsername(),
                     password: emprestimo.getUsuario().getPassword(),
                     colaborador: {
-                        id: emprestimo.getUsuario().getColaborador().getId(),
-                        name: emprestimo.getUsuario().getColaborador().getName(),
+                        id: emprestimo.getUsuario().getPessoa().getId(),
+                        name: emprestimo.getUsuario().getPessoa().getName(),
                     }
             },
                 pessoa: {

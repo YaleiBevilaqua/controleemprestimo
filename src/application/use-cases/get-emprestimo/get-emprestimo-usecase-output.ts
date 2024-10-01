@@ -1,8 +1,3 @@
-type colaborador ={
-    id: string;
-    name: string;
-}
-
 type itemType = {
     id: string;
     name: string;
@@ -23,7 +18,7 @@ type usuario = {
     id: string;
     username: string;
     password: string;
-    colaborador: colaborador;
+    colaborador: pessoa;
 }
 
 export type GetEmprestimoUseCaseOutput = {

@@ -29,12 +29,13 @@ export class GetEmprestimosUseCase{
                 usuario: {
                     id: emprestimo.getUsuario().getId(),
                     name: emprestimo.getUsuario().getUsername(),
+                    password: emprestimo.getUsuario().getPassword(),
                     colaborador: {
-                        id: emprestimo.getUsuario().getColaborador().getId(),
-                        name: emprestimo.getUsuario().getColaborador().getName(),
+                        id: emprestimo.getUsuario().getPessoa().getId(),
+                        name: emprestimo.getUsuario().getPessoa().getName(),
                     }
                 },
-                
+
                 dataEmprestimo: emprestimo.getDataEmprestimo().toISOString(),
                 dataDevolucao: emprestimo.getDataDevolucao()?.toISOString()
 

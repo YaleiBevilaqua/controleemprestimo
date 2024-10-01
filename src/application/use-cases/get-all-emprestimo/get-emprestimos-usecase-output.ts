@@ -1,20 +1,15 @@
-type colaboradorOutput = {
-    id: string
-    name: string
-}
-
 type itemType = {
     id: string
     name: string
 }
 
-type ItemOutput = {
+type itemOutput = {
     id: string
     name: string
     itemType: itemType
 }
 
-type PessoaOutput = {
+type pessoaOutput = {
     id: string
     name: string
 }
@@ -22,13 +17,14 @@ type PessoaOutput = {
 type usuarioOutput = {
     id: string
     name: string
-    colaborador: colaboradorOutput
+    password: string
+    colaborador: pessoaOutput
 }
 
 export type GetAllEmprestimoUseCaseOutput = {
     id: string; 
-    item: ItemOutput;
-    pessoa: PessoaOutput;
+    item: itemOutput;
+    pessoa: pessoaOutput;
     usuario: usuarioOutput;
     dataEmprestimo: string;
     dataDevolucao: string | undefined;
