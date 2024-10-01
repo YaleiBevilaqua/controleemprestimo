@@ -1,1 +1,3 @@
-export type GetEmprestimoUseCaseInput = {}
+export type GetEmprestimoUseCaseInput = {
+    id: string
+}

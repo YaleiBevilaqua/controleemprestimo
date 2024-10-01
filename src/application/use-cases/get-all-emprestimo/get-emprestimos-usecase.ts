@@ -16,7 +16,11 @@ export class GetEmprestimosUseCase{
                 id: emprestimo.getId(),
                 item: {
                     id: emprestimo.getItem().getId(),
-                    name: emprestimo.getItem().getName()
+                    name: emprestimo.getItem().getName(),
+                    itemType: {
+                        id: emprestimo.getItem().getTipoItem().getId(),
+                        name: emprestimo.getItem().getTipoItem().getName(),
+                    }
                 },
                 pessoa: {
                     id: emprestimo.getPessoa().getId(),
@@ -24,7 +28,11 @@ export class GetEmprestimosUseCase{
                 },
                 usuario: {
                     id: emprestimo.getUsuario().getId(),
-                    name: emprestimo.getUsuario().getUsername()
+                    name: emprestimo.getUsuario().getUsername(),
+                    colaborador: {
+                        id: emprestimo.getUsuario().getColaborador().getId(),
+                        name: emprestimo.getUsuario().getColaborador().getName(),
+                    }
                 },
                 dataEmprestimo: emprestimo.getDataEmprestimo().toISOString(),
                 dataDevolucao: emprestimo.getDataDevolucao()?.toISOString()

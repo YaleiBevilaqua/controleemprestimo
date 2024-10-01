@@ -3,9 +3,23 @@ import { GetEmprestimoUseCaseInput } from "./get-emprestimo-usecase-input";
 import { GetEmprestimoUseCaseOutput } from "./get-emprestimo-usecase-output";
 
 export class GetEmprestimoUseCase{
-    constructor(private readonly EmprestimoRepository: EmprestimoRepository){}
+    constructor(private readonly emprestimoRepository: EmprestimoRepository){}
 
     execute(input: GetEmprestimoUseCaseInput): GetEmprestimoUseCaseOutput{
-        return{}
+        const emprestimo = this.emprestimoRepository.getById(input.id)
+
+        return{
+            id: emprestimo.getId(),
+            item: {
+                id: emprestimo.getItem().getId(),
+                name: emprestimo.getItem().getName(),
+                itemType: {
+                    id: emprestimo.getItem().getTipoItem().getId(),
+                    name: emprestimo.getItem().getTipoItem().getName(),
+                }
+            }
+            dataDevolucao: emprestimo.getDataDevolucao(),
+            dataEmprestimo: emprestimo.getDataEmprestimo(),
+        }
     }
 }

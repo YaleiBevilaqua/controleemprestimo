@@ -1,6 +1,17 @@
+type colaboradorOutput = {
+    id: string
+    name: string
+}
+
+type itemType = {
+    id: string
+    name: string
+}
+
 type ItemOutput = {
     id: string
     name: string
+    itemType: itemType
 }
 
 type PessoaOutput = {
@@ -11,6 +22,7 @@ type PessoaOutput = {
 type usuarioOutput = {
     id: string
     name: string
+    colaborador: colaboradorOutput
 }
 
 export type GetAllEmprestimoUseCaseOutput = {
