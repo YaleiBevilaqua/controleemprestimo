@@ -3,7 +3,7 @@ import { UpdateUsuarioUseCaseInput } from "./update-usuario-input";
 import { UpdateUsuarioUseCaseOutput } from "./update-usuario-output";
 
 export class UpdateUsuarioUseCase {
-    constructor(private readonly UsuarioRepository: UsuarioRepository) {}
+    constructor(private readonly usuarioRepository: UsuarioRepository) {}
 
     execute(input: UpdateUsuarioUseCaseInput): UpdateUsuarioUseCaseOutput{
         return {}

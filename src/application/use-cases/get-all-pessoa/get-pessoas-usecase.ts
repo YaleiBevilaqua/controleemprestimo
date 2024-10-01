@@ -3,10 +3,10 @@ import { GetAllPessoaUseCaseInput } from "./get-pessoas-usecase-input";
 import { GetAllPessoaUseCaseOutput } from "./get-pessoas-usecase-output";
 
 export class GetAllPessoaUseCase{
-    constructor(private readonly PessoaRepository: PessoaRepository){}
+    constructor(private readonly pessoaRepository: PessoaRepository){}
 
     execute(input: GetAllPessoaUseCaseInput): GetAllPessoaUseCaseOutput[] {
-        const listaDePessoas = this.PessoaRepository.getAll();
+        const listaDePessoas = this.pessoaRepository.getAll();
 
         const output: GetAllPessoaUseCaseOutput[] = [];
 

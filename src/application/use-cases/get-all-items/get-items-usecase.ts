@@ -3,10 +3,10 @@ import { GetAllItemUseCaseOutput } from "./get-item-usecase-output";
 import { GetAllItemUseCaseInput } from "./get-items-usecase-input";
 
 export class GetAllItemUseCase {
-    constructor(private readonly ItemRepository: ItemRepository){}
+    constructor(private readonly itemRepository: ItemRepository){}
 
     execute(input: GetAllItemUseCaseInput): GetAllItemUseCaseOutput[] {
-        const listaDeItems = this.ItemRepository.getAll();
+        const listaDeItems = this.itemRepository.getAll();
 
         const output: GetAllItemUseCaseOutput[] = [];
 

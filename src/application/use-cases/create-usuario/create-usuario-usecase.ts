@@ -4,7 +4,7 @@ import { CreateUsuarioUseCaseOutput } from "./create-usuario-usecase-output";
 
 
 export class CreateUsuarioUseCase {
-    constructor (private readonly UsuarioRepository: UsuarioRepository){}
+    constructor (private readonly usuarioRepository: UsuarioRepository){}
 
     execute(input: CreateUsuarioUseCaseInput): CreateUsuarioUseCaseOutput{
         return{}

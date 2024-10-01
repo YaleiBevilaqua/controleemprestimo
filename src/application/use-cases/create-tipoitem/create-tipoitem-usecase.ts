@@ -4,7 +4,7 @@ import { CreateTipoItemUseCaseInput } from "./create-tipoitem-usecase-input";
 import { CreateTipoItemUseCaseOutput } from "./create-tipoitem-usecase-output";
 
 export class CreateTipoItemUseCase {
-    constructor (private readonly ItemTypeRepository: ItemTypeRepository){}
+    constructor (private readonly itemTypeRepository: ItemTypeRepository){}
 
     execute(input: CreateTipoItemUseCaseInput): CreateTipoItemUseCaseOutput{
         return{}

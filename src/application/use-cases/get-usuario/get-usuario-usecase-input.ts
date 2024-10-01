@@ -1,1 +1,3 @@
-export type GetUsuarioUseCaseInput = {}
+export type GetUsuarioUseCaseInput = {
+    id: string
+}
