@@ -14,7 +14,7 @@ export class CreateItemUseCase {
         
         const itemType = this.itemTypeRepository.getById(input.itemTypeId);
 
-        const item = new Item(input.name, itemType );
+        const item = new Item(input.name, itemType, input.id );
 
         this.itemRepository.create(item);
         return{};
