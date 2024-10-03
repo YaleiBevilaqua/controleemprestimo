@@ -7,6 +7,10 @@ export class CreateTipoItemUseCase {
     constructor (private readonly itemTypeRepository: ItemTypeRepository){}
 
     execute(input: CreateTipoItemUseCaseInput): CreateTipoItemUseCaseOutput{
+        
+        const tipoItem = new TipoItem(input.name, input.id);
+
+        this.itemTypeRepository.create(tipoItem);
         return{}
     }
 }

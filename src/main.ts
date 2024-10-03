@@ -2,7 +2,8 @@ import express from 'express';
 import { ItemController } from './application/controller/item-controller';
 import { ItemRepositoryMemory } from './infra/repository/memory/item-repository-memory';
 import { PessoaController } from './application/controller/pessoa-controller';
-import { PessoaRepositoryMemory, PessoaRepositoryMemory } from './infra/repository/memory/pessoa-repository-memory';
+import { PessoaRepositoryMemory} from './infra/repository/memory/pessoa-repository-memory';
+import { ItemTypeRepositoryMemory } from './infra/repository/memory/item-type-repository-memory';
 
 const app = express();
 const port = 3333;
@@ -10,9 +11,11 @@ app.use(express.json())
 
 const itemRepositoryMemory = new ItemRepositoryMemory()
 
+const tipoItemRepositoryMemory = new ItemTypeRepositoryMemory()
+
 const pessoaRepositoryMemory = new PessoaRepositoryMemory()
 
-const itemsController = new ItemController(itemRepositoryMemory)
+const itemsController = new ItemController(itemRepositoryMemory, tipoItemRepositoryMemory)
 
 const pessoaController = new PessoaController(pessoaRepositoryMemory)
 
