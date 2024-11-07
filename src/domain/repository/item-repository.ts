@@ -1,8 +1,9 @@
 import { Item } from "../entity/item";
+import { TipoItem } from "../entity/tipo-item";
 
-export interface ItemRepository {
-    getAll(): Item[];
-    getById(id: string): Item;
-    create(item: Item): void;
-    update(item: Item): void;
+export interface ItemTypeRepository {
+    getAll(): Promise<TipoItem[]>;
+    getById(id: string): Promise<TipoItem>;
+    create(tipoitem: TipoItem): Promise<void>;
+    update(tipoitem: TipoItem): Promise<void>;
 }
