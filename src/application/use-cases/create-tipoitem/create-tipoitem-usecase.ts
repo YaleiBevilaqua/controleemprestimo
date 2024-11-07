@@ -4,9 +4,13 @@ import { CreateTipoItemUseCaseInput } from "./create-tipoitem-usecase-input";
 import { CreateTipoItemUseCaseOutput } from "./create-tipoitem-usecase-output";
 
 export class CreateTipoItemUseCase {
-    constructor (private readonly ItemTypeRepository: ItemTypeRepository){}
+    constructor (private readonly itemTypeRepository: ItemTypeRepository){}
 
     execute(input: CreateTipoItemUseCaseInput): CreateTipoItemUseCaseOutput{
+        
+        const tipoItem = new TipoItem(input.name, input.id);
+
+        this.itemTypeRepository.create(tipoItem);
         return{}
     }
 }
