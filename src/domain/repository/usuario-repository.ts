@@ -4,9 +4,9 @@ import { TipoItem } from "../entity/tipo-item";
 import { Usuario } from "../entity/usuario";
 
 export interface UsuarioRepository {
-    getAll(): Usuario[];
-    getById(id: string): Usuario;
-    getByUsername(usuario: string): Usuario;
-    create(usuario: Usuario): void;
-    update(usuario: Usuario): void;
+    getAll(): Promise<Usuario[]>;
+    getById(id: string): Promise<Usuario>;
+    getByUsername(usuario: string): Promise<Usuario>;
+    create(usuario: Usuario): Promise<void>;
+    update(usuario: Usuario): Promise<void>;
 }

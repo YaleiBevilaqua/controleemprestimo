@@ -5,8 +5,8 @@ import { GetAllPessoaUseCaseOutput } from "./get-pessoas-usecase-output";
 export class GetAllPessoaUseCase{
     constructor(private readonly pessoaRepository: PessoaRepository){}
 
-    execute(input: GetAllPessoaUseCaseInput): GetAllPessoaUseCaseOutput[] {
-        const listaDePessoas = this.pessoaRepository.getAll();
+    async execute(input: GetAllPessoaUseCaseInput): Promise<GetAllPessoaUseCaseOutput[]> {
+        const listaDePessoas = await this.pessoaRepository.getAll();
 
         const output: GetAllPessoaUseCaseOutput[] = [];
 

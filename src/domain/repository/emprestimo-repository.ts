@@ -5,8 +5,8 @@ import { TipoItem } from "../entity/tipo-item";
 import { Usuario } from "../entity/usuario";
 
 export interface EmprestimoRepository {
-    getAll(): Emprestimo[];
-    getById(id: string): Emprestimo;
-    create(emprestimo: Emprestimo): void;
-    update(emprestimo: Emprestimo): void;
+    getAll(): Promise<Emprestimo[]>;
+    getById(id: string): Promise<Emprestimo>;
+    create(emprestimo: Emprestimo): Promise<void>;
+    update(emprestimo: Emprestimo): Promise<void>;
 }

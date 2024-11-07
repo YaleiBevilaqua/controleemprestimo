@@ -5,8 +5,8 @@ import { GetTipoItemUseCaseOutput } from "./get-tipoitem-usecase-output";
 export class GetTipoItemUseCase{
     constructor (private readonly itemTypeRepository: ItemTypeRepository){}
 
-    execute(input: GetTipoItemUseCaseInput): GetTipoItemUseCaseOutput{
-        const tipoItem = this.itemTypeRepository.getById(input.id)
+    async execute(input: GetTipoItemUseCaseInput): Promise<GetTipoItemUseCaseOutput>{
+        const tipoItem = await this.itemTypeRepository.getById(input.id)
         return {
             id: tipoItem.getId(),
             name: tipoItem.getName()

@@ -5,8 +5,8 @@ import { GetItemUseCaseOutput } from "./get-item-usecase-output";
 export class GetItemUseCase {
     constructor(private readonly itemRepository: ItemRepository){}
 
-    execute(input: GetItemUseCaseInput): GetItemUseCaseOutput{
-        const item = this.itemRepository.getById(input.id)
+    async execute(input: GetItemUseCaseInput): Promise<GetItemUseCaseOutput>{
+        const item = await this.itemRepository.getById(input.id)
 
         return{
             id: item.getId(),

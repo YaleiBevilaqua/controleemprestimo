@@ -5,8 +5,8 @@ import { GetAllTipoItemUseCaseOutput } from "./get-tipoitems-usecase-output";
 export class GetTipoItemsUseCase{
     constructor (private readonly itemTypeRepository: ItemTypeRepository){}
 
-    execute(input: GetAllTipoItemUseCaseInput): GetAllTipoItemUseCaseOutput[] {
-        const listaDeTipoDeItems = this.itemTypeRepository.getAll()
+    async execute(input: GetAllTipoItemUseCaseInput): Promise<GetAllTipoItemUseCaseOutput[]> {
+        const listaDeTipoDeItems = await this.itemTypeRepository.getAll()
 
         const output: GetAllTipoItemUseCaseOutput[] = []
 

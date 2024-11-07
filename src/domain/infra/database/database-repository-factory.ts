@@ -1,6 +1,7 @@
-import { ItemRepository } from "../../domain/repository/item-repository";
-import { ItemTypeRepository } from "../../domain/repository/item-type-repository";
-import { RepositoryFactory } from "../../domain/repository/repository-factory";
+
+import { ItemRepository } from "../../repository/item-repository";
+import { ItemTypeRepository } from "../../repository/item-type-repository";
+import { RepositoryFactory } from "../../repository/repository-factory";
 import ItemRepositoryDatabase from "../repository/database/item-repository-database";
 import { ItemTypeRepositoryDatabase } from "../repository/database/item-type-repository-database";
 import { Connection } from "./connection";

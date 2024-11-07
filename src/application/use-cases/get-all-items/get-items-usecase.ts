@@ -5,8 +5,8 @@ import { GetAllItemUseCaseInput } from "./get-items-usecase-input";
 export class GetAllItemUseCase {
     constructor(private readonly itemRepository: ItemRepository){}
 
-    execute(input: GetAllItemUseCaseInput): GetAllItemUseCaseOutput[] {
-        const listaDeItems = this.itemRepository.getAll();
+    async execute(input: GetAllItemUseCaseInput): Promise<GetAllItemUseCaseOutput[]> {
+        const listaDeItems = await this.itemRepository.getAll();
 
         const output: GetAllItemUseCaseOutput[] = [];
 

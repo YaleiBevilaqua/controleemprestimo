@@ -5,8 +5,8 @@ import { GetUsuarioUseCaseOutput } from "./get-usuario-usecase-output";
 export class GetUsuarioUseCase{
     constructor(private readonly usuarioRepository:UsuarioRepository ){}
 
-    execute(input: GetUsuarioUseCaseInput): GetUsuarioUseCaseOutput{
-        const usuario = this.usuarioRepository.getById(input.id)
+    async execute(input: GetUsuarioUseCaseInput): Promise<GetUsuarioUseCaseOutput>{
+        const usuario = await this.usuarioRepository.getById(input.id)
 
         return{
             id: usuario.getId(),
