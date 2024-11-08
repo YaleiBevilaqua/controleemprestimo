@@ -8,8 +8,7 @@ import { UpdateItemUseCaseInput } from "../use-cases/update-item/update-item-inp
 import { UpdateItemUseCase } from "../use-cases/update-item/update-item-usecase";
 
 export class ItemController{
-    constructor(private repositoryFactory: RepositoryFactory,
-        private itemrepository: ItemRepository
+    constructor(private repositoryFactory: RepositoryFactory
     ) {}
     
     async getAll(input: any) { 

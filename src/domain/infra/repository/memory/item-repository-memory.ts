@@ -1,6 +1,6 @@
-import { Item } from "../../../domain/entity/item";
-import { TipoItem } from "../../../domain/entity/tipo-item";
-import { ItemRepository } from "../../../domain/repository/item-repository";
+import { Item } from "../../../entity/item";
+import { TipoItem } from "../../../entity/tipo-item";
+import { ItemRepository } from "../../../repository/item-repository";
 
 export class ItemRepositoryMemory implements ItemRepository {
     private items: Item[];

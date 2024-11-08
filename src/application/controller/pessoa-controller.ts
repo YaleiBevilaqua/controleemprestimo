@@ -1,24 +1,26 @@
 import { PessoaRepository } from "../../domain/repository/pessoa-repository";
+import { RepositoryFactory } from "../../domain/repository/repository-factory";
 import { CreatePessoaUseCase } from "../use-cases/create-pessoa/create-pessoa-usecase";
 import { GetAllPessoaUseCase } from "../use-cases/get-all-pessoa/get-pessoas-usecase";
 import { UpdatePessoaUseCase } from "../use-cases/update-pessoa/update-pessoa-usecase";
 
 export class PessoaController{
-    constructor(private readonly pessoaRepository: PessoaRepository) {}
+    constructor(private readonly repositoryFactory: RepositoryFactory
+    ) {}
 
-    getAll(input: any){
+    async getAll(input: any){
         const getAllPessoaUseCase = new GetAllPessoaUseCase(this.pessoaRepository);
-        return getAllPessoaUseCase.execute(input);
+        return await getAllPessoaUseCase.execute(input);
     }
 
-    create(input: any){
-        const createPessoaUseCase = new CreatePessoaUseCase(this.pessoaRepository);
-        createPessoaUseCase.execute(input);
+    async create(input: any){
+        const createPessoaUseCase = new CreatePessoaUseCase(this.repositoryFactory);
+        await createPessoaUseCase.execute(input);
     }
 
-    update(input: any){
+    async update(input: any){
         const updatePessoaUseCase = new UpdatePessoaUseCase(this.pessoaRepository);
-        updatePessoaUseCase.execute(input);
+        await updatePessoaUseCase.execute(input);
     }
 
 
