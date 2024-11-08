@@ -1,22 +1,34 @@
 import { Item } from "../../../domain/entity/item";
 import { ItemRepository } from "../../../domain/repository/item-repository";
 import { ItemTypeRepository } from "../../../domain/repository/item-type-repository";
-import { CreateItemUseCaseInput } from "./create-item-usecase-input";
-import { CreateItemUseCaseOutput } from "./create-item-usecase-output";
+import { RepositoryFactory } from "../../../domain/repository/repository-factory";
+import { CreateItemUseCaseInput } from "./create-item-usecase-input"; 
 
 export class CreateItemUseCase {
-    constructor(
-        readonly itemRepository: ItemRepository,
-        readonly itemTypeRepository: ItemTypeRepository
-    ){}
+    private itemRepository: ItemRepository;
+    private itemTypeRepository: ItemTypeRepository;
+    constructor(private repositoryFactory: RepositoryFactory
+    ) {
+        this.itemRepository = repositoryFactory.createItemRepository();
+        this.itemTypeRepository = repositoryFactory.createItemTypeRepository();
+    }
+    
+    async execute(input: CreateItemUseCaseInput) {
+        if (!input.name) {
+            throw new Error('Nome do item não informado');
+        }
+        if (!input.itemTypeId) {
+            throw new Error('Tipo do item não informado');
+        }
 
-    execute(input: CreateItemUseCaseInput): CreateItemUseCaseOutput{
-        
-        const itemType = this.itemTypeRepository.getById(input.itemTypeId);
+        const itemType = await this.itemTypeRepository.getById(input.itemTypeId);
 
-        const item = new Item(input.name, itemType, input.id );
+        const item = new Item(input.name, itemType);
 
-        this.itemRepository.create(item);
-        return{};
+        await this.itemRepository.create(item);
+
+        return {};
+
+
     }
 }
