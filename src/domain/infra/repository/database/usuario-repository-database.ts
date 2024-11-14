@@ -2,6 +2,7 @@ import { error } from "console";
 import { Usuario } from "../../../entity/usuario";
 import { UsuarioRepository } from "../../../repository/usuario-repository";
 import { Connection } from "../../database/connection";
+import { Pessoa } from "../../../entity/pessoa";
 
 export class UsuarioRepositoryDatabase implements UsuarioRepository{
     
@@ -10,46 +11,87 @@ export class UsuarioRepositoryDatabase implements UsuarioRepository{
     async getAll(): Promise<Usuario[]> {
         const output = [];
         const usuariosData = await this.connection.execute(`
-            select us.id, us.nomeusuario, is.senha, pe.id, pe.nome, pe.documento from usuarios us
-            LEFT JOIN pessoas pe ON pe.id = us.id_pessoa
-            `)
+        	select us.id, us.nomeusuario, us.senha, 
+            pe.id as id_colaborador, pe.nome, pe.documento 
+            from usuarios us
+        	LEFT JOIN pessoas pe ON pe.id = us.id_pessoa
+        	`)
 
-            for(const usuarioData of usuariosData){
-                output.push(new Usuario(usuarioData.id, usuarioData.username, usuarioData.password, usuarioData.pessoa))
-            }
-            return output
+    	    for (const usuarioData of usuariosData) {
+        	const pessoa = new Pessoa(
+            	usuarioData.id_colaborador,
+                usuarioData.nome,
+                usuarioData.documento
+        	)
+
+        	const usuario = new Usuario(
+            	usuarioData.id,
+                usuarioData.nomeusuario,
+                pessoa,
+                usuarioData.senha
+            )
+            output.push(usuario)
+        }
+
+        return output
     }
 
 
 
     async getById(id: string): Promise<Usuario> {
-        const [ usuarioData ] = await this.connection.execute(`
-            select us.id, us.nomeusuario, is.senha, pe.id, pe.nome, pe.documento from usuarios us
-            LEFT JOIN pessoas pe ON pe.id = us.id_pessoa
-            where us.id = $1
-            `, [id]);
+        const [ usuariosData ] = await this.connection.execute(`
+        	select us.id, us.nomeusuario, us.senha, 
+            pe.id as id_colaborador, pe.nome, pe.documento 
+            from usuarios us
+        	LEFT JOIN pessoas pe ON pe.id = us.id_pessoa
+        	where i.id = $1`, [id])
 
-            if(!usuarioData){
-                throw new Error("Usuário não encontrado")
+            if (!usuariosData) {
+                throw new Error('Item não encontrado');
             }
 
-            return new Usuario(usuarioData.username, usuarioData.password, usuarioData.pessoa, usuarioData.id)
+        	const pessoa = new Pessoa(
+            	usuariosData.id_colaborador,
+                usuariosData.nome,
+                usuariosData.documento
+        	)
+
+        	const usuario = new Usuario(
+            	usuariosData.id,
+                usuariosData.nomeusuario,
+                pessoa,
+                usuariosData.senha
+            )
+            
+        return usuario
     }
 
-
-
     async getByUsername(usuario: string): Promise<Usuario> {
-        const [ usuarioData ] = await this.connection.execute(`
-            select us.id, us.nomeusuario, is.senha, pe.id, pe.nome, pe.documento from usuarios us
-            LEFT JOIN pessoas pe ON pe.id = us.id_pessoa
-            where us.nomeusuario = $1
-            `, [usuario])
+        const [ usuariosData ] = await this.connection.execute(`
+        	select us.id, us.nomeusuario, us.senha, 
+            pe.id as id_colaborador, pe.nome, pe.documento 
+            from usuarios us
+        	LEFT JOIN pessoas pe ON pe.id = us.id_pessoa
+        	where i.id = $1`, [usuario])
 
-            if(!usuarioData){
-                throw new Error("Usuário não encontrado")
+            if (!usuariosData) {
+                throw new Error('Item não encontrado');
             }
 
-            return new Usuario(usuarioData.username, usuarioData.password, usuarioData.pessoa, usuarioData.id)
+        	const pessoa = new Pessoa(
+            	usuariosData.id_colaborador,
+                usuariosData.nome,
+                usuariosData.documento
+        	)
+
+        	const usuario_entidade = new Usuario(
+            	usuariosData.id,
+                usuariosData.nomeusuario,
+                pessoa,
+                usuariosData.senha
+            )
+            
+        return usuario_entidade
     }
 
 

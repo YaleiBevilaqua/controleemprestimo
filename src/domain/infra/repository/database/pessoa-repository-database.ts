@@ -12,9 +12,15 @@ export class PessoaRepositoryDatabase implements PessoaRepository {
         const pessoasData = await this.connection.execute(`
             select pessoas.id, pessoas.nome, pessoas.documento from pessoas`);
 
-        for (const pessoaData of pessoasData) {
-            output.push(new Pessoa(pessoaData.nome, pessoaData.id, pessoaData.documento));
-        }
+            for(const pessoaData of pessoasData){
+        		const pessoa = new Pessoa(
+            	pessoaData.id,
+                pessoaData.nome,
+                pessoaData.documento
+                )
+                output.push(pessoa)
+            }
+
         return output;
     }
 
@@ -28,7 +34,13 @@ export class PessoaRepositoryDatabase implements PessoaRepository {
             throw new Error('Colaborador não encontrado');
         }
 
-        return new Pessoa(pessoaData.nome, pessoaData.id, pessoaData.documento);
+        const pessoa = new Pessoa(
+            pessoaData.name,
+            pessoaData.documento,
+            pessoaData.id
+        )
+
+        return pessoa
     }
 
 

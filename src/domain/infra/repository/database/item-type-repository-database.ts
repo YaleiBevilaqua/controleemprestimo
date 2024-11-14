@@ -1,5 +1,5 @@
 
-import { TipoItem } from "../../../entity/tipo-item";
+import { TipoItem, } from "../../../entity/tipo-item";
 import { ItemTypeRepository } from "../../../repository/item-type-repository";
 import { Connection } from "../../database/connection";
 
@@ -14,7 +14,11 @@ export class ItemTypeRepositoryDatabase implements ItemTypeRepository{
             select id, nome from tipos_item`);
 
         for (const itemTypeData of itemTypesData) {
-            output.push(new TipoItem(itemTypeData.nome, itemTypeData.id));
+            const itemType = new TipoItem(
+                itemTypeData.name,
+                itemTypeData.id
+            )
+            output.push(itemType)
         }
         return output;
     }
@@ -30,7 +34,12 @@ export class ItemTypeRepositoryDatabase implements ItemTypeRepository{
             throw new Error('Tipo de Item não encontrado');
         }
 
-        return new TipoItem(itemTypeData.nome, itemTypeData.id);
+        const itemType = new TipoItem(
+            itemTypeData.name,
+            itemTypeData.id
+        )
+
+        return itemType
     }
 
 
