@@ -72,7 +72,7 @@ export class UsuarioRepositoryDatabase implements UsuarioRepository{
             pe.id as id_colaborador, pe.nome, pe.documento 
             from usuarios us
         	LEFT JOIN pessoas pe ON pe.id = us.id_pessoa
-        	where i.id = $1`, [usuario])
+        	where i.nomeusuario = $1`, [usuario])
 
             if (!usuariosData) {
                 throw new Error('Item não encontrado');

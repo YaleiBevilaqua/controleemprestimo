@@ -6,26 +6,27 @@ import { GetItemUseCase } from "../use-cases/get-item/get-item-usecase";
 import { GetAllItemUseCase } from "../use-cases/get-all-items/get-items-usecase";
 import { UpdateItemUseCaseInput } from "../use-cases/update-item/update-item-input";
 import { UpdateItemUseCase } from "../use-cases/update-item/update-item-usecase";
+import ItemRepositoryDatabase from "../../domain/infra/repository/database/item-repository-database";
 
 export class ItemController{
     constructor(private repositoryFactory: RepositoryFactory
     ) {}
     
-    async getAll(input: any) { 
-        const getItems = new GetAllItemUseCase(this.itemrepository);
+   async getAll(input: any) { 
+        const getItems = new GetAllItemUseCase(this.repositoryFactory);
         return await getItems.execute(input);
     }
 
     async getById(id: string) {
-        try {
-            const getItem = new GetItemUseCase(this.itemrepository);
-            return await getItem.execute({id});
-        } catch (e: any) {
-            return {
-                message: e.message
-            }
-        }
-    }
+         try {
+             const getItem = new GetItemUseCase(this.repositoryFactory);
+             return await getItem.execute({id});
+         } catch (e: any) {
+             return {
+                 message: e.message
+             }
+         }
+     }
 
     async create(input: any){
         try {
@@ -40,23 +41,23 @@ export class ItemController{
         }
     }
 
-    update(input: UpdateItemUseCase {
-        const updateItemUseCase = new UpdateItemUseCase(
-            this.itemRepository,
-            this.itemTypeRepository
-        );
-        return updateItemUseCase.execute(input);
-    }
+    // update(input: UpdateItemUseCase {
+    //     const updateItemUseCase = new UpdateItemUseCase(
+    //         this.itemRepository,
+    //         his.itemTypeRepository
+    //      );
+    //      return updateItemUseCase.execute(input);
+    //  }
 
-    delete(id: string) {
-        try {
-            const deleteItem = new DeleteItemUseCase(this.itemRepository);
-            return deleteItem.execute({id});
-        } catch (e: any) {
-            return {
-                message: e.message
-            }
-        }
+    //  delete(id: string) {
+    //      try {
+    //          const deleteItem = new DeleteItemUseCase(this.itemRepository);
+    //          return deleteItem.execute({id});
+    //      } catch (e: any) {
+    //          return {
+    //              message: e.message
+    //          }
+    //      }
         
-    }
+    //  }
 }

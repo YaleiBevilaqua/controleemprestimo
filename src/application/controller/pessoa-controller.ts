@@ -8,20 +8,20 @@ export class PessoaController{
     constructor(private readonly repositoryFactory: RepositoryFactory
     ) {}
 
-    async getAll(input: any){
-        const getAllPessoaUseCase = new GetAllPessoaUseCase(this.pessoaRepository);
-        return await getAllPessoaUseCase.execute(input);
-    }
+    // async getAll(input: any){
+    //     const getAllPessoaUseCase = new GetAllPessoaUseCase(this.pessoaRepository);
+    //     return await getAllPessoaUseCase.execute(input);
+    // }
 
     async create(input: any){
         const createPessoaUseCase = new CreatePessoaUseCase(this.repositoryFactory);
         await createPessoaUseCase.execute(input);
     }
 
-    async update(input: any){
-        const updatePessoaUseCase = new UpdatePessoaUseCase(this.pessoaRepository);
-        await updatePessoaUseCase.execute(input);
-    }
+    // // async update(input: any){
+    // //     const updatePessoaUseCase = new UpdatePessoaUseCase(this.pessoaRepository);
+    // //     await updatePessoaUseCase.execute(input);
+    // }
 
 
 }

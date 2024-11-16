@@ -17,8 +17,8 @@ export class TipoItemController{
         }
     }
 
-    update(input: any){
-        const updateTypeItemUseCase = new UpdateTypeItemUseCase(this.repositoryFactory);
-        updateTypeItemUseCase.execute(input);
-    }
+//     update(input: any){
+//         const updateTypeItemUseCase = new UpdateTypeItemUseCase(this.repositoryFactory);
+//         updateTypeItemUseCase.execute(input);
+//     }
 }

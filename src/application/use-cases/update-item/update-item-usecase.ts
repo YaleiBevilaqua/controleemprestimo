@@ -1,9 +1,11 @@
 import { ItemRepository } from "../../../domain/repository/item-repository";
+import { RepositoryFactory } from "../../../domain/repository/repository-factory";
 import { UpdateItemUseCaseInput } from "./update-item-input";
 import { UpdateItemUseCaseOutput } from "./update-item-output";
 
 export class UpdateItemUseCase {
-    constructor(private readonly itemRepository: ItemRepository) {}
+    private itemRepository: ItemRepository; 
+        constructor(readonly repositoryFactory: RepositoryFactory){this.itemRepository =repositoryFactory.createItemRepository()}
 
     execute(input: UpdateItemUseCaseInput): UpdateItemUseCaseOutput{
         return {}

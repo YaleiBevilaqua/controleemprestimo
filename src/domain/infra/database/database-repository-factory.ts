@@ -1,19 +1,23 @@
 
 import { ItemRepository } from "../../repository/item-repository";
 import { ItemTypeRepository } from "../../repository/item-type-repository";
+import { PessoaRepository } from "../../repository/pessoa-repository";
 import { RepositoryFactory } from "../../repository/repository-factory";
 import ItemRepositoryDatabase from "../repository/database/item-repository-database";
 import { ItemTypeRepositoryDatabase } from "../repository/database/item-type-repository-database";
+import { PessoaRepositoryDatabase } from "../repository/database/pessoa-repository-database";
 import { Connection } from "./connection";
 
 export class DatabaseRepositoryFactory implements RepositoryFactory{
     constructor(private connection: Connection) {
-    }S
+    }
     createItemRepository(): ItemRepository {
         return new ItemRepositoryDatabase(this.connection);
     }
     createItemTypeRepository(): ItemTypeRepository {
         return new ItemTypeRepositoryDatabase(this.connection);
     }
-
+    createPessoaRepository(): PessoaRepository{
+        return new PessoaRepositoryDatabase(this.connection);
+    }
 }
