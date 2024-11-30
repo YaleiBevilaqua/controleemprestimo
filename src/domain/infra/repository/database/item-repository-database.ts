@@ -39,10 +39,9 @@ export default class ItemRepositoryDatabase implements ItemRepository {
 
     async getById(id: string): Promise<Item> {
         const [ itemData ] = await this.connection.execute(`
-            select i.id, i.nome, i.id_tipo_item, ti.id as tipo_item_id, ti.nome as nome_tipoitem, iepi.ca, iepi.validade
+            select i.id, i.nome, i.id_tipo_item, ti.id as tipo_item_id, ti.nome as nome_tipoitem
             from itens i
             LEFT JOIN tipos_item ti ON ti.id = i.id_tipo_item
-            LEFT JOIN itens_epi iepi ON iepi.id_item = i.id
             where i.id = $1`,
             [id]
         );

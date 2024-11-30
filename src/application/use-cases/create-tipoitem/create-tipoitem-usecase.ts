@@ -11,6 +11,9 @@ export class CreateTipoItemUseCase {
         this.itemTypeRepository= repositoryFactory.createItemTypeRepository();
     }
 
+
+
+
   async execute(input: CreateTipoItemUseCaseInput){
         if (!input.name) {
         throw new Error('Nome do Tipo de item não informado');

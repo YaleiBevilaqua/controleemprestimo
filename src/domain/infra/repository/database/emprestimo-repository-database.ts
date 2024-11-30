@@ -39,8 +39,8 @@ export class EmprestimoRepositoryDatabase implements EmprestimoRepository{
             const usuario = new Usuario(
                 emprestimoData.nomeusuario,
                 emprestimoData.senha,
-                pessoa,
-                emprestimoData.id_usuarios
+                emprestimoData.id_usuarios,
+                pessoa
             )
 
             const itemType = new TipoItem(
@@ -101,8 +101,9 @@ export class EmprestimoRepositoryDatabase implements EmprestimoRepository{
             const usuario = new Usuario(
                 emprestimoData.nomeusuario,
                 emprestimoData.senha,
-                pessoa,
-                emprestimoData.id_usuarios
+                emprestimoData.id_usuarios,
+                pessoa
+                
             )
 
             const itemType = new TipoItem(

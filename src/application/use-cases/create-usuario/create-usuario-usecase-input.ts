@@ -4,5 +4,5 @@ export type CreateUsuarioUseCaseInput = {
     id: string
     username: string
     password: string
-    pessoaId: Pessoa
+    pessoaId: string
 }

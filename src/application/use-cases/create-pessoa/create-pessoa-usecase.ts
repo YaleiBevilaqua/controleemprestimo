@@ -11,11 +11,11 @@ export class CreatePessoaUseCase {
     }
 
     async execute(input: CreatePessoaUseCaseInput){
-        if (!input.name) {
-            throw new Error('Nome da pessoa não informado');
-        }
-        
-        const pessoa = new Pessoa(input.name, input.id);
+        if (!input.name || !input.documento) {
+            throw new Error('Dado não informado');
+        } 
+ 
+        const pessoa = new Pessoa(input.id, input.name, input.documento);
 
         await this.pessoaRepository.create(pessoa);
         return{};

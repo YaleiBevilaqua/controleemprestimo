@@ -20,7 +20,7 @@ export class GetAllPessoaUseCase{
                 documento:itemdalista.getDocumento(),
                 }
             )
-
+            
         }
         return output
     }

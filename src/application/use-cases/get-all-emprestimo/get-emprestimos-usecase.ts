@@ -1,16 +1,20 @@
 import { EmprestimoRepository } from "../../../domain/repository/emprestimo-repository";
+import { RepositoryFactory } from "../../../domain/repository/repository-factory";
 import { GetAllEmprestimoUseCaseInput } from "./get-emprestimos-usecase-input";
 import { GetAllEmprestimoUseCaseOutput } from "./get-emprestimos-usecase-output";
 
-export class GetEmprestimosUseCase{
-    constructor(private readonly emprestimoRepository: EmprestimoRepository){}
+export class GetAllEmprestimosUseCase{
+    private emprestimoRepository: EmprestimoRepository
+    constructor(readonly repositoryFactory: RepositoryFactory){
+        this.emprestimoRepository= repositoryFactory.createEmprestimoRepository()
+        }
 
-    async execute(input: GetAllEmprestimoUseCaseInput): Promise<GetAllEmprestimoUseCaseOutput[]>{
-        const listadeEmprestimos = await this.emprestimoRepository.getAll();
+    async execute(input: GetAllEmprestimoUseCaseInput): Promise<GetAllEmprestimoUseCaseOutput[]> {
+        const listaDeEmprestimos = await this.emprestimoRepository.getAll();
 
         const output: GetAllEmprestimoUseCaseOutput[]=[];
 
-        for (const emprestimo of listadeEmprestimos){
+        for (const emprestimo of listaDeEmprestimos){
             output.push(
                 {
                 id: emprestimo.getId(),

@@ -14,9 +14,20 @@ export class PessoaController{
     
 
     async create(input: any){
-        const createPessoaUseCase = new CreatePessoaUseCase(this.repositoryFactory);
-        await createPessoaUseCase.execute(input);
+        try{
+            const createPessoaUseCase = new CreatePessoaUseCase(
+                this.repositoryFactory
+            );
+            return await createPessoaUseCase.execute(input);
+        }catch(e: any){
+            return 
+            {
+                message: e.message
+            }
+        }
     }
+        
+
 
     // // async update(input: any){
     // //     const updatePessoaUseCase = new UpdatePessoaUseCase(this.pessoaRepository);
