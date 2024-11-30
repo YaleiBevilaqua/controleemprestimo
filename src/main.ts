@@ -6,6 +6,7 @@ import { ItemTypeRepositoryDatabase } from './domain/infra/repository/database/i
 import { DatabaseRepositoryFactory } from './domain/infra/database/database-repository-factory';
 import { PessoaController } from "./application/controller/pessoa-controller";
 import { UsuarioController } from "./application/controller/usuario-controller";
+import { EmprestimoController } from "./application/controller/emprestimo-controller";
 
 config();
 const app = express();
@@ -35,6 +36,7 @@ const repositoryFactory = new DatabaseRepositoryFactory(connectionPostgreSQL);
 const itemsController = new ItemController(repositoryFactory);
 const pessoaController = new PessoaController(repositoryFactory);
 const usuarioController = new UsuarioController(repositoryFactory);
+const emprestimoController= new EmprestimoController(repositoryFactory);
 
 app.get('/items', async(request, response) => {
     response.send(await itemsController.getAll({}));
@@ -50,6 +52,13 @@ app.get('/items', async(request, response) => {
 app.get('/usuarios', async (request, response) => {
     response.send(await usuarioController.getAll({}))
 })
+
+app.get('/emprestimos', async(request, response) => {
+    response.send(await emprestimoController.getAll({}))
+    })
+
+
+
 // app.get('/items/:id', async (request, response) => {
 //     const id = request.params.id;
 //     response.send(await itemsController.getById(id));
