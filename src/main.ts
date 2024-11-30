@@ -7,7 +7,7 @@ import { DatabaseRepositoryFactory } from './domain/infra/database/database-repo
 
 config();
 const app = express();
-const port = 3005;
+const port = 3000;
 app.use(express.json())
 app.all('*', function (req, res, next) {
             res.header('Access-Control-Allow-Origin', '*');
@@ -17,11 +17,11 @@ app.all('*', function (req, res, next) {
         });
 
 const dadosconexao = {
-    user: process.env.DB_USERNAME || '',
-    password: process.env.DB_PASSWORD || '',
-    database: process.env.DB_DATABASE || '',
-    host: process.env.DB_HOST || '',
-    port: process.env.DB_PORT || ''
+    user: process.env.DB_USERNAME || 'postgres',
+    password: process.env.DB_PASSWORD || 'dev@123',
+    database: process.env.DB_DATABASE || 'cleber',
+    host: process.env.DB_HOST || '159.89.46.66',
+    port: process.env.DB_PORT || '5432'
 }
 
 console.log(dadosconexao)
@@ -32,9 +32,13 @@ const repositoryFactory = new DatabaseRepositoryFactory(connectionPostgreSQL);
 
 const itemsController = new ItemController(repositoryFactory);
 
-// app.get('/items', async(request, response) => {
-//     response.send(await itemsController.getAll({}));
-// });
+app.get('/items', async(request, response) => {
+    response.send(await itemsController.getAll({}));
+ });
+ app.get('/Tipo_items', async(request, response) => {
+    response.send(await itemsController.getAll({}));
+ });
+
 
 // app.get('/items/:id', async (request, response) => {
 //     const id = request.params.id;
@@ -59,6 +63,6 @@ app.post('/items',async (request, response) => {
     response.send(await itemsController.create(request.body));
 });
 
-app.listen(port, () => {
-    console.log("Servidor iniciado na porta " + port)
+app.listen(3000, () => {
+    console.log("Servidor iniciado na porta 3000")
 })

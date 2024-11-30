@@ -13,13 +13,12 @@ export default class ItemRepositoryDatabase implements ItemRepository {
     async getAll(): Promise<Item[]> {
         const output = []
         const itensData = await this.connection.execute(`
-            select i.id, i.nome, i.id_tipo_item, ti.id as tipo_item_id, ti.nome as nome_tipoitem, iepi.ca, iepi.validade
-            from itens i
-            LEFT JOIN tipos_item ti ON ti.id = i.id_tipo_item
-            LEFT JOIN itens_epi iepi ON iepi.id_item = i.id`);
+              select i.id, i.nome, i.id_tipo_item, ti.id as tipo_item_id, ti.nome as nome_tipoitem
+                from itens i
+                LEFT JOIN tipos_item ti ON ti.id = i.id_tipo_item`);
 
         for (const itemData of itensData) {
-            const tipoItem = new TipoItem(
+            const tipoItem = new TipoItem(  
                 itemData.nome_tipoitem,
                 itemData.tipo_item_id
             )
