@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buscar Emprestimo</title>
+    <title>Buscar Epi</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <style>
 
     h1 {
@@ -35,22 +35,30 @@ tr:nth-child(even) {
 th, td {
     border: 1px solid #dddddd;
 }
+
+
+.container-botoes {
+    display: flex;
+    justify-content: space-between;
+    width: 100%; /* Garante que o container ocupe toda a largura disponível */
+    margin-top: 5px;
+}
+
     </style>
  
 </head>
 
 <body>
-    <h1>Buscar Emprestimo</h1>
+    <h1>Buscar Epi</h1>
     <div class="container">
         <table >
             <thead class="">
             <tr>
                 <th scope="col">ID</th>
-                <th scope="col">Pessoa</th>
                 <th scope="col">Item</th>
-                <th scope="col">Data Emprestimo</th>
-                <th scope="col">Data devolução</th>
-                <th scope="col">Usuario</th>
+                <th scope="col">CA</th>
+                <th scope="col">Validade</th>
+                <th scope="col">Tipo Item</th>
                 <th scope="col">Modulo de Edição</th>
             </tr>
             </thead>
@@ -61,8 +69,7 @@ th, td {
                 <td></td>
                 <td></td>
                 <td></td>
-                <td></td>
-                <td><Button class="btn btn-warning">Editar</Button> <button class="btn btn-danger">Excluir</button></td>
+                <td><Button class="btn btn-warning">Editar <i class="bi bi-pencil-square"></i></Button> <button class="btn btn-danger">Excluir <i class="bi bi-trash"></i></button></td>
             </tr>
             <tr>
                 <td ></td>
@@ -70,12 +77,17 @@ th, td {
                 <td></td>
                 <td></td>
                 <td></td>
-                <td></td>
-                <td><Button class="btn btn-warning">Editar</Button> <button class="btn btn-danger">Excluir</button></td>
+                <td><Button class="btn btn-warning">Editar <i class="bi bi-pencil-square"></i></Button> <button class="btn btn-danger">Excluir <i class="bi bi-trash"></i></button></td>
             </tr>
           
             </tbody>
         </table>
+
+        <div class="container-botoes">
+                <a href="menu.html" class="btn btn-danger">Sair <i class="bi bi-x-circle-fill"></i></a>
+                 <a href="buscarEpi.html" class="btn btn-success">Atualizar <i class="bi bi-arrow-repeat"></i></a>
+        </div>
+
       </div>
 </body>
 

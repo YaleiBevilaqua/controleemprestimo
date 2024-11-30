@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página Inicial</title>
+  
+  <script>
+    function abrirSaibaMais() {
+        // Abre uma nova janela ou aba
+        window.location.href = 'saibaMais.html';
+    }
+</script>
+  
+  <style>
+    /* Reset básico */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Estilo geral do corpo da página */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      color: #333; /* Texto preto padrão */
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh; /* Garante que a altura do body seja pelo menos a altura da tela */
+    }
+
+    /* Estilo do cabeçalho */
+    header {
+      background-color: #2d56dd;
+      color: #fff;
+      padding: 1rem 0;
+    }
+
+    header .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+    }
+
+    nav ul {
+      list-style-type: none;
+    }
+
+    nav ul li {
+      display: inline;
+      margin-left: 20px;
+    }
+
+    nav ul li a {
+      color: #fff; /* Texto branco */
+      text-decoration: none;
+      font-size: 1rem;
+      transition: all 0.3s ease; /* Transição suave para o efeito de hover */
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); /* Sombramento padrão */
+      padding: 6px 12px;
+      border-radius: 20px; /* Borda arredondada */
+      background-color: #2d56dd; /* Cor de fundo igual ao texto (azul) */
+    }
+
+    nav ul li a:hover {
+      color: #fff; /* Cor do texto fica mais escura ao passar o mouse */
+      background-color: #214cda; /* Fundo branco quando o mouse passa */
+      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Sombramento mais intenso no hover */
+    }
+
+    /* Estilo da seção principal */
+    main {
+      padding: 2rem 0;
+      flex: 1; /* Garante que o conteúdo principal ocupe o espaço restante */
+    }
+
+    main .container {
+      display: flex;
+      justify-content: space-between;
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .main-content {
+      width: 70%;
+    }
+
+    .main-content h2 {
+      font-size: 2rem;
+      color: #333;
+    }
+
+    .main-content p {
+      margin: 1rem 0;
+    }
+
+    button {
+      padding: 10px 15px;
+      background-color: #486be0;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombramento padrão */
+    }
+
+    button:hover {
+      background-color: #3b62e2;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombramento ao passar o mouse */
+    }
+
+    button:active {
+      background-color: #444;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombramento ao clicar */
+      transform: translateY(2px); /* Efeito de pressionar */
+    }
+
+    /* Estilo da barra lateral */
+    .sidebar {
+      width: 25%;
+      background-color: #fff;
+      padding: 1rem;
+      border-radius: 8px;
+    }
+
+    .sidebar h3 {
+      margin-bottom: 1rem;
+    }
+
+    .sidebar ul {
+      list-style-type: none;
+    }
+
+    .sidebar ul li {
+      margin-bottom: 0.5rem;
+    }
+
+    .sidebar ul li a {
+      text-decoration: none;
+      color: #333; /* Cor preta para os links na sidebar */
+      transition: all 0.3s ease; /* Transição suave para o efeito de hover */
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); /* Sombramento padrão */
+      padding: 6px 12px;
+      border-radius: 20px; /* Borda arredondada */
+      background-color: #f4f4f4; /* Fundo claro para os links na sidebar */
+    }
+
+    .sidebar ul li a:hover {
+      color: #000; /* Escurece a cor do texto ao passar o mouse */
+      background-color: #a1a2a3; /* Fundo mais claro quando o mouse passa */
+      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Sombramento mais intenso no hover */
+    }
+
+    /* Estilo do rodapé */
+    footer {
+      background-color: #2d56dd;
+      color: #fff;
+      padding: 1rem 0;
+      text-align: center;
+    }
+
+    footer p {
+      font-size: 1rem;
+    }
+
+    /* Responsividade para telas pequenas */
+    @media screen and (max-width: 768px) {
+      main .container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .main-content, .sidebar {
+        width: 100%;
+        margin-bottom: 2rem;
+      }
+
+      nav ul {
+        text-align: center;
+      }
+
+      nav ul li {
+        display: block;
+        margin: 10px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <h1>Controle de Emprestimos</h1>
+      <nav>
+        <ul>
+          <li><a href="buscarEmprestimo.html">Emprestimos</a></li>
+          <li><a href="buscarUsuario.html">Usuarios</a></li>
+          <li><a href="buscarPessoa.html">Colaboradores</a></li>
+          <li><a href="buscarItens.html">Itens</a></li>
+          <li><a href="buscarTiposItem.html">Tipos de Item</a></li>
+		      <li><a href="buscarEpi.html">EPIs</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <section class="main-content">
+        <h2>Bem vindo!</h2>
+        <p>Esta é a pagina inicial, na barra superior temos as listagens, e a esquerda os cadastros.</p>
+        <button onclick="abrirSaibaMais ()">Sobre Nós</button>
+      </section>
+      
+      <aside class="sidebar">
+        <h3>Cadastros</h3>
+        <ul>
+          <li><a href="cadastroUsuario">Usuario</a></li>
+          <li><a href="cadastroColaborador">Colaborador</a></li>
+          <li><a href="cadastroItem">Item</a></li>
+		  <li><a href="cadastroTipoItem">Tipo Item</a></li>
+		  <li><a href="cadastroEpi">EPI</a></li>
+		  <li><a href="cadastroEmprestimo">Emprestimo</a></li>
+        </ul>
+      </aside>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2024, Controle de Emprestimos. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

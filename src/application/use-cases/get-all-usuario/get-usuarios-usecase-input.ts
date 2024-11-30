@@ -1,1 +1,3 @@
-export type GetAllUsuarioUseCaseInput = {}
+export type GetAllUsuarioUseCaseInput = {
+    username: string
+}
