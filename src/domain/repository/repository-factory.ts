@@ -1,3 +1,4 @@
+import { EmprestimoRepository } from "./emprestimo-repository";
 import { ItemRepository } from "./item-repository";
 import { ItemTypeRepository } from "./item-type-repository";
 import { PessoaRepository } from "./pessoa-repository";
@@ -8,4 +9,5 @@ export interface RepositoryFactory {
     createItemTypeRepository(): ItemTypeRepository;
     createPessoaRepository(): PessoaRepository;
     createUsuarioRepository(): UsuarioRepository;
+    createEmprestimoRepository(): EmprestimoRepository;
 }

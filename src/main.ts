@@ -1,10 +1,11 @@
 import { config } from "dotenv";
-import express, { response } from 'express';
+import express, { request, response } from 'express';
 import { ItemController } from './application/controller/item-controller';
 import { PostgresConnection } from './domain/infra/database/postgres-connection';
 import { ItemTypeRepositoryDatabase } from './domain/infra/repository/database/item-type-repository-database';
 import { DatabaseRepositoryFactory } from './domain/infra/database/database-repository-factory';
 import { PessoaController } from "./application/controller/pessoa-controller";
+import { UsuarioController } from "./application/controller/usuario-controller";
 
 config();
 const app = express();
@@ -33,6 +34,7 @@ const repositoryFactory = new DatabaseRepositoryFactory(connectionPostgreSQL);
 
 const itemsController = new ItemController(repositoryFactory);
 const pessoaController = new PessoaController(repositoryFactory);
+const usuarioController = new UsuarioController(repositoryFactory);
 
 app.get('/items', async(request, response) => {
     response.send(await itemsController.getAll({}));
@@ -45,7 +47,9 @@ app.get('/items', async(request, response) => {
     response.send(await pessoaController.getAll({}))
  })
 
-
+app.get('/usuarios', async (request, response) => {
+    response.send(await usuarioController.getAll({}))
+})
 // app.get('/items/:id', async (request, response) => {
 //     const id = request.params.id;
 //     response.send(await itemsController.getById(id));
