@@ -6,5 +6,4 @@ export interface RepositoryFactory {
     createItemRepository(): ItemRepository
     createItemTypeRepository(): ItemTypeRepository;
     createPessoaRepository(): PessoaRepository;
-
 }
