@@ -15,7 +15,7 @@ export class CreatePessoaUseCase {
             throw new Error('Dado não informado');
         } 
  
-        const pessoa = new Pessoa(input.name, input.documento, input.id);
+        const pessoa = new Pessoa(input.id, input.name, input.documento);
 
         await this.pessoaRepository.create(pessoa);
         return{};

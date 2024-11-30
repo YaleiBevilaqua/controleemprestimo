@@ -1,6 +1,7 @@
 import { ItemTypeRepository } from "../../domain/repository/item-type-repository";
 import { RepositoryFactory } from "../../domain/repository/repository-factory";
 import { CreateTipoItemUseCase } from "../use-cases/create-tipoitem/create-tipoitem-usecase";
+import { GetAllItemUseCase } from "../use-cases/get-all-items/get-items-usecase";
 import { UpdateTypeItemUseCase } from "../use-cases/update-tipoitem/update-tipoitem-usecase";
 
 export class TipoItemController{
@@ -16,6 +17,12 @@ export class TipoItemController{
             }
         }
     }
+
+    async getAll(input: any) { 
+        const getItems = new GetAllItemUseCase(this.repositoryFactory);
+        return await getItems.execute(input);
+    }
+
 
 //     update(input: any){
 //         const updateTypeItemUseCase = new UpdateTypeItemUseCase(this.repositoryFactory);

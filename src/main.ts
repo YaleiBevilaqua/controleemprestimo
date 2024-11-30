@@ -57,7 +57,13 @@ app.get('/emprestimos', async(request, response) => {
     response.send(await emprestimoController.getAll({}))
     })
 
+app.post('/items',async (request, response) => {
+        response.send(await itemsController.create(request.body));
+    });
 
+app.post('/pessoas',async (request, response) => {
+        response.send(await pessoaController.create(request.body));
+    });    
 
 // app.get('/items/:id', async (request, response) => {
 //     const id = request.params.id;
@@ -78,10 +84,8 @@ app.get('/emprestimos', async(request, response) => {
 //     }));
 // });
 
-app.post('/items',async (request, response) => {
-    response.send(await itemsController.create(request.body));
-});
 
-app.listen(3000, () => {
+
+app.listen(4000 , () => {
     console.log("Servidor iniciado na porta 3000")
 })
