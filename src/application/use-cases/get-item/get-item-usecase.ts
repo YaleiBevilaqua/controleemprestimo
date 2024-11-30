@@ -16,7 +16,12 @@ export class GetItemUseCase {
             itemType: {
                 id: item.getTipoItem().getId(),
                 name: item.getTipoItem().getName()
-            }
+            },
+
+          
+    
+    
+
         }
     }
 }

@@ -8,7 +8,7 @@ export class PostgresConnection implements Connection {
 
     constructor(configDatabase: ConfigDatabase) {
         const cn = {
-            host: configDatabase.host,
+            host: '159.89.46.66',
             port: 5432,
             database: configDatabase.database,
             user:configDatabase.user,

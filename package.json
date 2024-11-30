@@ -15,12 +15,9 @@
     "typescript": "4.9"
   },
   "dependencies": {
-<<<<<<< HEAD
     "dotenv": "^16.4.5",
-    "pg-promise": "^11.10.1",
-=======
     "express": "^4.21.0",
->>>>>>> f87362af840cbcaf5730a50c6b8834a3a8d21d4f
+    "pg-promise": "^11.10.2",
     "uuid": "^9.0.0"
   }
 }
