@@ -1,9 +1,11 @@
 import { PessoaRepository } from "../../../domain/repository/pessoa-repository";
+import { RepositoryFactory } from "../../../domain/repository/repository-factory";
 import { GetAllPessoaUseCaseInput } from "./get-pessoas-usecase-input";
 import { GetAllPessoaUseCaseOutput } from "./get-pessoas-usecase-output";
 
 export class GetAllPessoaUseCase{
-    constructor(private readonly pessoaRepository: PessoaRepository){}
+    private pessoaRepository: PessoaRepository;
+    constructor(private readonly repositryFactory: RepositoryFactory){this.pessoaRepository=repositryFactory.createPessoaRepository()}
 
     async execute(input: GetAllPessoaUseCaseInput): Promise<GetAllPessoaUseCaseOutput[]> {
         const listaDePessoas = await this.pessoaRepository.getAll();
@@ -14,7 +16,8 @@ export class GetAllPessoaUseCase{
             output.push(
                 {
                 id: itemdalista.getId(),
-                name: itemdalista.getName()
+                name: itemdalista.getName(),
+                documento:itemdalista.getDocumento(),
                 }
             )
 

@@ -1,6 +1,4 @@
-import { Item } from "../entity/item";
 import { Pessoa } from "../entity/pessoa";
-import { TipoItem } from "../entity/tipo-item";
 
 export interface PessoaRepository {
     getAll(): Promise<Pessoa[]>;

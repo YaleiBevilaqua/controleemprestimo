@@ -1,12 +1,10 @@
-import { ItemRepository } from "../../domain/repository/item-repository";
-import { ItemTypeRepository } from "../../domain/repository/item-type-repository";
 import { RepositoryFactory } from "../../domain/repository/repository-factory";
 import { CreateItemUseCase } from "../use-cases/create-item/create-item-usecase";
 import { GetItemUseCase } from "../use-cases/get-item/get-item-usecase";
 import { GetAllItemUseCase } from "../use-cases/get-all-items/get-items-usecase";
 import { UpdateItemUseCaseInput } from "../use-cases/update-item/update-item-input";
 import { UpdateItemUseCase } from "../use-cases/update-item/update-item-usecase";
-import ItemRepositoryDatabase from "../../domain/infra/repository/database/item-repository-database";
+
 
 export class ItemController{
     constructor(private repositoryFactory: RepositoryFactory
@@ -41,13 +39,13 @@ export class ItemController{
         }
     }
 
-    // update(input: UpdateItemUseCase {
-    //     const updateItemUseCase = new UpdateItemUseCase(
-    //         this.itemRepository,
-    //         his.itemTypeRepository
-    //      );
-    //      return updateItemUseCase.execute(input);
-    //  }
+    //  update(input: UpdateItemUseCase {
+    //      const updateItemUseCase = new UpdateItemUseCase(
+    //          this.itemRepository,
+    //          this.itemTypeRepository
+    //       );
+    //       return updateItemUseCase.execute(input);
+    //   }
 
     //  delete(id: string) {
     //      try {

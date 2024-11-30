@@ -10,13 +10,13 @@ export class PessoaRepositoryDatabase implements PessoaRepository {
     async getAll(): Promise<Pessoa[]> {
         const output = [];
         const pessoasData = await this.connection.execute(`
-            select pessoas.id, pessoas.nome, pessoas.documento from pessoas`);
+            select pessoas.documento, pessoas.id, pessoas.nome from pessoas`);
 
             for(const pessoaData of pessoasData){
         		const pessoa = new Pessoa(
-            	pessoaData.id,
-                pessoaData.nome,
-                pessoaData.documento
+            	pessoaData.documento,
+                pessoaData.id,
+                pessoaData.nome
                 )
                 output.push(pessoa)
             }

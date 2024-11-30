@@ -5,7 +5,10 @@ import { GetAllItemUseCaseInput } from "./get-items-usecase-input";
 
 export class GetAllItemUseCase {
     private itemRepository: ItemRepository; 
-    constructor(readonly repositoryFactory: RepositoryFactory){this.itemRepository =repositoryFactory.createItemRepository()}
+    constructor(readonly repositoryFactory: RepositoryFactory)
+    {
+        this.itemRepository =repositoryFactory.createItemRepository()
+    }
 
 
     async execute(input: GetAllItemUseCaseInput): Promise<GetAllItemUseCaseOutput[]> {
