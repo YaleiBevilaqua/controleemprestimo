@@ -46,9 +46,9 @@ export class PessoaRepositoryDatabase implements PessoaRepository {
 
     async create(pessoa: Pessoa): Promise<void> {
         await this.connection.execute(`
-            insert into pessoas (id, nome, documento)
-            values($1, $2, $3)`,
-        [pessoa.getId(), pessoa.getName(), pessoa.getDocumento])
+            insert into pessoas (nome, documento)
+            values($1, $2)`,
+        [pessoa.getName(), pessoa.getDocumento()])
     }
 
 
