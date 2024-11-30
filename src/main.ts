@@ -43,7 +43,7 @@ app.get('/items', async(request, response) => {
 
  app.get('/pessoas', async (request, response)=>{
     response.send(await pessoaController.getAll({}))
- })
+ });
 
 
 // app.get('/items/:id', async (request, response) => {
