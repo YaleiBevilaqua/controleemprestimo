@@ -50,7 +50,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <label class="form-label">Nome de Usuario</label>
-                    <input type="text" class="form-control" placeholder="digite o nome desejado para o usuario"
+                    <input type="text" id="nome" class="form-control" placeholder="digite o nome desejado para o usuario"
                         required>
                 </div>
             </div>
@@ -66,25 +66,23 @@
                     <label class="form-label">Confirme a Senha</label>
                     <input type="password" id="validaSenha" class="form-control" placeholder="digite a senha desejada"
                         required>
+                        <label for="" id="senhaincorreta"></label>
                 </div>
             </div>
 
             <div class="pessoa_info mt-4" style="display: block" ;>
                 <div class="row">
-                    <div class="col-md-4">
-                        <label class="form-label">Documento(CPF)</label>
-                        <input type="number" class="form-control" placeholder="Digite o seu CPF" required>
-                    </div>
-
                     <div class="col-md-8">
-                        <label class="form-label">Nome</label>
-                        <input type="text" class="form-control" placeholder="Digite o seu CPF" required disabled>
+                        <label class="form-label">Insira o colaborador</label>
+                        <select name="" id="colaborador_select">
+                            <option value=""> Selecione um Usuário </option>
+                        </select>
                     </div>
                 </div>
             </div>
 
             <div class="mt-3 botoes">
-                <button type="submit" class="btn btn-success">Salvar <i class="bi bi-check-circle-fill"></i></button>
+                <button type="submit" class="btn btn-success" onclick="cadastrarUsuario()">Salvar <i class="bi bi-check-circle-fill"></i></button>
                 <a href="menu.html" class="btn btn-danger">Cancelar <i class="bi bi-x-circle-fill"></i></a>
                 <button type="reset" class="btn btn-warning">Limpar <i class="bi bi-trash"></i></button>
                 
@@ -92,4 +90,84 @@
         </form>
 </body>
 
+<script>
+    urlCadastrarUsuario = 'http://localhost:3000/usuario/cadastro'
+    urlBuscarColaborador = 'http://localhost:3000/colaborador'
+    urlBuscarUsuarioPorId = 'http://localhost:3000/colaborador/:id'
+
+    async function carregarColaborador(){
+        const response = await fetch(urlBuscarUsuario)
+        const colaboradores = await response.json(response)
+
+        const colaboradorSelect = document.getElementById('colaborador_select')
+
+        colaboradores.forEach(colaborador => {
+            const opcao = document.createElement('option')
+            opcao.value = colaborador.id
+            opcao.text = colaborador.nome
+            usuarioSelect.appendChild(opcao)
+        });
+    }
+
+    carregarColaborador()
+
+    async function cadastrarUsuario() {
+        const username = document.getElementById('nome').value
+        const password = document.getElementById('senha').value
+        const validasenha = document.getElementById('validaSenha').value
+        const pessoa = document.getElementById('colaborador_select').value
+
+        if(senha != validasenha){
+            document.getElementById('senhaincorreta').value = 'As senhas não conferem'
+        }
+        else{
+            const usuario = {
+                username: username,
+                password: password,
+                id_pessoa: pessoa
+            }
+            if(id){
+                const response = await fetch(urlCadastrarUsuario, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(usuario)
+                });
+            }else{
+                const response = await fetch(urlCadastrarUsuario, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(usuario)
+                })
+            }
+        }
+    }
+
+    async function carregarUsuario(id) {
+      try {
+        const response = await fetch(`${urlBuscarUsuarioPorId}/${id}`);
+        const colaborador = await response.json();
+        
+        // Preencher os campos com os dados retornados
+        document.getElementById('nome').value = colaborador.nome;
+        document.getElementById('senha').value = colaborador.password;
+        document.getElementById('validaSenha').value = colaborador.password;
+        document.getElementById('colaborador_select').value = colaborador.id_pessoa;
+        } catch (error) {
+        console.error('Erro ao carregar dados do funcionário:', error);
+      }
+    }
+
+    // Verificar se existe um ID na URL para edição
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get('id');
+    if (id) {
+      carregarUsuario(id);  // Caso haja ID, carregar dados do funcionário
+    } else {
+    }
+
+</script>
 </html>

@@ -60,7 +60,7 @@
 
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="tbody">
                 <tr>
                     <td></td>
                     <td></td>
@@ -81,4 +81,32 @@
     </div>
 </body>
 
+
+<script>
+    urlBuscarPessoas = 'http://localhost:3000/pessoas'
+
+    async function carregarPessoas() {
+        const pessoas = await fetch(urlBuscarPessoas)
+        .then(res => res.json())
+        .then(data => {
+          const tablebody = document.getElementById('tbody')
+          tablebody.innerHTML=''
+        })
+
+        data.forEach(tipo => {
+            const row = document.createElement('tr')
+            
+            
+            row.innerHTML = `
+            <td> ${tipo.nome} </td>
+            <td> ${tipo.documentos} </td>
+            <td><button class="btn btn-warning">Editar <i class="bi bi-pencil-square"></i></button> <button class="btn btn-danger">Excluir <i class="bi bi-trash"></i></button></td>
+            `
+
+        });
+        
+
+    }
+
+</script>
 </html>
