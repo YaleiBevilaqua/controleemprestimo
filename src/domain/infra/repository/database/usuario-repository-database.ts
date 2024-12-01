@@ -12,14 +12,17 @@ export class UsuarioRepositoryDatabase implements UsuarioRepository{
         const output = [];
         const usuariosData = await this.connection.execute(`
         	select us.id, us.nomeusuario, us.senha, 
-            pe.id as id_colaborador, pe.nome, pe.documento 
+            pe.id as id_pessoa, pe.nome, pe.documento 
             from usuarios us
         	LEFT JOIN pessoas pe ON pe.id = us.id_pessoa
         	`)
+            if (!usuariosData) {
+        throw new Error('usuario não encontrado');
+    }
 
     	    for (const usuarioData of usuariosData) {
         	const pessoa = new Pessoa(
-            	usuarioData.id_colaborador,
+            	usuarioData.id_pessoa,
                 usuarioData.nome,
                 usuarioData.documento
         	)

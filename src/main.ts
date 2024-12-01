@@ -7,6 +7,8 @@ import { DatabaseRepositoryFactory } from './domain/infra/database/database-repo
 import { PessoaController } from "./application/controller/pessoa-controller";
 import { UsuarioController } from "./application/controller/usuario-controller";
 import { EmprestimoController } from "./application/controller/emprestimo-controller";
+import { TipoItem } from "./domain/entity/tipo-item";
+import { TipoItemController } from "./application/controller/tipoitem-controller";
 
 config();
 const app = express();
@@ -37,12 +39,13 @@ const itemsController = new ItemController(repositoryFactory);
 const pessoaController = new PessoaController(repositoryFactory);
 const usuarioController = new UsuarioController(repositoryFactory);
 const emprestimoController= new EmprestimoController(repositoryFactory);
+const tipoItemController = new TipoItemController(repositoryFactory);
 
 app.get('/items', async(request, response) => {
     response.send(await itemsController.getAll({}));
  });
  app.get('/Tipo_items', async(request, response) => {
-    response.send(await itemsController.getAll({}));
+    response.send(await tipoItemController.getAll({}));
  });
 
  app.get('/pessoas', async (request, response)=>{
@@ -74,6 +77,10 @@ app.post('/usuarios', async (request, response) => {
     response.send(await usuarioController.create(request.body));
 });
 
+app.post('Tipo_item', async (request, response) => {
+    response.send(await itemsController.create(request.body));
+})
+
 //app.delete('/items/:id', (request, response) => {
 //    const id = request.params.id;
 //    response.send(itemsController.delete(id));
@@ -91,5 +98,5 @@ app.post('/usuarios', async (request, response) => {
 
 
 app.listen(4000 , () => {
-    console.log("Servidor iniciado na porta 3000")
+    console.log("Servidor iniciado na porta 4000")
 })
