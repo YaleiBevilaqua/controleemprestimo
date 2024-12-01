@@ -19,9 +19,9 @@ export class UsuarioRepositoryDatabase implements UsuarioRepository{
             if (!usuariosData) {
         throw new Error(' não encontrado');
     }
-
+    
     	    for (const usuarioData of usuariosData) {
-        	const pessoa = new Pessoa(
+                const pessoa = new Pessoa(
             	usuarioData.id_pessoa,
                 usuarioData.nome,
                 usuarioData.documento
@@ -31,12 +31,11 @@ export class UsuarioRepositoryDatabase implements UsuarioRepository{
             	usuarioData.id,
                 usuarioData.nomeusuario,
                 usuarioData.senha,
-                pessoa
+                pessoa,
                
             )
             output.push(usuario)
-        }
-
+        }        
         return output
     }
 
@@ -64,7 +63,7 @@ export class UsuarioRepositoryDatabase implements UsuarioRepository{
             	usuariosData.id,
                 usuariosData.nomeusuario,
                 usuariosData.senha,
-                pessoa
+                pessoa,
             )
             
         return usuario
@@ -93,7 +92,6 @@ export class UsuarioRepositoryDatabase implements UsuarioRepository{
                 usuariosData.nomeusuario,
                 usuariosData.senha,
                 pessoa,
-                
             )
             
         return usuario_entidade
@@ -102,10 +100,11 @@ export class UsuarioRepositoryDatabase implements UsuarioRepository{
 
 
     async create(usuario: Usuario): Promise<void> {
+        
         await this.connection.execute(`
-            INSERT INTO usuarios(id, id_pessoa, nomeusuario, senha)
-            VALUES($1, $2, $3, $4)
-            `, [usuario.getId(), usuario.getPessoa(), usuario.getUsername(), usuario.getPassword()])
+            INSERT INTO usuarios(id_pessoa, nomeusuario, senha)
+            VALUES($1, $2, $3)
+            `, [usuario.getPessoa().getId, usuario.getUsername(), usuario.getPassword()])
     }
 
 

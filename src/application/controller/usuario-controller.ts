@@ -14,11 +14,8 @@ export class UsuarioController{
     }
     async create(input: any){
         try{
-            const createUsuarioUseCas= new CreateUsuarioUseCase(
-                this.repositoryFactory
-            );
-
-            return await createUsuarioUseCas.execute(input)
+            const createUsuarioUseCase= new CreateUsuarioUseCase(this.repositoryFactory);
+            return await createUsuarioUseCase.execute(input)
         }catch(e:any){return{
             message: e.message
         }

@@ -14,7 +14,7 @@ import { TipoItemController } from "./application/controller/tipoitem-controller
 config();
 const app = express();
 const corsa = require('cors');
-const port = 3000;
+const port = 5000;
 app.use(express.json())
 app.all('*', function (req, res, next) {
             res.header('Access-Control-Allow-Origin', '*');
@@ -69,6 +69,11 @@ app.get('/items/:id', async (request, response) => {
      response.send(await itemsController.getById(id));
  });
 
+ app.get('/pessoas/:id', async (request, response) => {
+    const id = request.params.id;
+    response.send(await pessoaController.getById(id));
+ })
+
  app.post('/items', async (request, response) => {
     response.send(await itemsController.create(request.body));
 });
@@ -78,6 +83,7 @@ app.post('/pessoas', async (request, response) => {
 }); 
 
 app.post('/usuarios', async (request, response) => {
+    console.log(request.body)
     response.send(await usuarioController.create(request.body));
 });
 

@@ -1,5 +1,5 @@
 export type CreatePessoaUseCaseInput = {
-    id: string,
+    id: string;
     name: string,
     documento: string
 }

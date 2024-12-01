@@ -68,15 +68,16 @@
 </body>
 
 <script>
-    urlCadastroColaborador = "http://localhost:4000/colaborador/cadastro"
-    urlPegarColaborador = 'http://localhost:4000/pessoas/:id'
+    urlCadastroColaborador = 'http://localhost:5000/pessoas'
+    urlPegarColaborador = 'http://localhost:5000/pessoas/:id'
 
     async function cadastrarColaborador() {
         const nome = document.getElementById('nome').value
         const documento = document.getElementById('documento').value
-
+        const id = ''
         const colaborador = {
-            nome: nome,
+            id: id,
+            name: nome,
             documento: documento
         }
         
@@ -90,7 +91,7 @@
                 body: JSON.stringify(colaborador)
             });
         }else{
-            console.log(colaborador)
+            
             try{
                 const response = await fetch(urlCadastroColaborador, {
                     method: 'POST',

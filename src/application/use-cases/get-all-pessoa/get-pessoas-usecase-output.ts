@@ -1,5 +1,5 @@
 export type GetAllPessoaUseCaseOutput = {
-    name: string;
     id: string;
+    name: string;
     documento: string;
 }

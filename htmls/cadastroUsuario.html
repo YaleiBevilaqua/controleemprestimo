@@ -74,7 +74,7 @@
                 <div class="row">
                     <div class="col-md-8">
                         <label class="form-label">Insira o colaborador</label>
-                        <select name="" id="colaborador_select">
+                        <select name="" id="colaborador_select" class="form-control">
                             <option value=""> Selecione um Usuário </option>
                         </select>
                     </div>
@@ -91,20 +91,20 @@
 </body>
 
 <script>
-    urlCadastrarUsuario = 'http://localhost:3000/usuario/cadastro'
-    urlBuscarColaborador = 'http://localhost:3000/colaborador'
-    urlBuscarUsuarioPorId = 'http://localhost:3000/colaborador/:id'
+    urlCadastrarUsuario = 'http://localhost:5000/usuario/cadastro'
+    urlBuscarColaborador = 'http://localhost:5000/pessoas'
+    urlBuscarUsuarioPorId = 'http://localhost:5000/colaborador/:id'
 
     async function carregarColaborador(){
-        const response = await fetch(urlBuscarUsuario)
+        const response = await fetch(urlBuscarColaborador)
         const colaboradores = await response.json(response)
 
-        const colaboradorSelect = document.getElementById('colaborador_select')
+        const usuarioSelect = document.getElementById('colaborador_select')
 
         colaboradores.forEach(colaborador => {
             const opcao = document.createElement('option')
             opcao.value = colaborador.id
-            opcao.text = colaborador.nome
+            opcao.text = colaborador.name
             usuarioSelect.appendChild(opcao)
         });
     }
@@ -124,7 +124,7 @@
             const usuario = {
                 username: username,
                 password: password,
-                id_pessoa: pessoa
+                pessoa: pessoa
             }
             if(id){
                 const response = await fetch(urlCadastrarUsuario, {
