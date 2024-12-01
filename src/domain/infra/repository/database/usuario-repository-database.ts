@@ -104,7 +104,7 @@ export class UsuarioRepositoryDatabase implements UsuarioRepository{
         await this.connection.execute(`
             INSERT INTO usuarios(id_pessoa, nomeusuario, senha)
             VALUES($1, $2, $3)
-            `, [usuario.getPessoa().getId, usuario.getUsername(), usuario.getPassword()])
+            `, [usuario.getPessoa().getId(), usuario.getUsername(), usuario.getPassword()])
     }
 
 

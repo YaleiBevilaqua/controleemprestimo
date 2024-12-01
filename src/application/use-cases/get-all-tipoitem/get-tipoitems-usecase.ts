@@ -6,7 +6,7 @@ import { GetAllTipoItemUseCaseOutput } from "./get-tipoitems-usecase-output";
 export class GetTipoItemsUseCase{
     private itemTypeRepository: ItemTypeRepository
     constructor (readonly repositoryFactory: RepositoryFactory){
-        this.itemTypeRepository= repositoryFactory.createItemTypeRepository();
+        this.itemTypeRepository = repositoryFactory.createItemTypeRepository();
     }
 
     async execute(input: GetAllTipoItemUseCaseInput): Promise<GetAllTipoItemUseCaseOutput[]> {
@@ -22,6 +22,6 @@ export class GetTipoItemsUseCase{
                 }
             )
         }
-        return output
+        return output;
     }
 }

@@ -48,7 +48,7 @@ const tipoItemController = new TipoItemController(repositoryFactory);
 app.get('/items', async(request, response) => {
     response.send(await itemsController.getAll({}));
  });
- app.get('/Tipo_items', async(request, response) => {
+ app.get('/tipo_items', async(request, response) => {
     response.send(await tipoItemController.getAll({}));
  });
 
@@ -87,8 +87,8 @@ app.post('/usuarios', async (request, response) => {
     response.send(await usuarioController.create(request.body));
 });
 
-app.post('Tipo_item', async (request, response) => {
-    response.send(await itemsController.create(request.body));
+app.post('/tipo_item', async (request, response) => {
+    response.send(await tipoItemController.create(request.body));
 })
 
 //app.delete('/items/:id', (request, response) => {

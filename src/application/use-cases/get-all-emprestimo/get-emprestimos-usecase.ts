@@ -39,12 +39,8 @@ export class GetAllEmprestimosUseCase{
                         name: emprestimo.getUsuario().getPessoa().getName(),
                     }
                 },
-
                 dataEmprestimo: emprestimo.getDataEmprestimo().toISOString(),
                 dataDevolucao: emprestimo.getDataDevolucao()?.toISOString()
-
-
-
                 }
             )
         }
