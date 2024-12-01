@@ -1,11 +1,22 @@
+import { TipoItem } from "../../../domain/entity/tipo-item";
 import { ItemTypeRepository } from "../../../domain/repository/item-type-repository";
-import { UpdateTypeItemUseCaseInput } from "./update-tipoitem-input";
-import { UpdateTypeItemUseCaseOutput } from "./update-tipoitem-output";
+import { RepositoryFactory } from "../../../domain/repository/repository-factory";
+import { UpdateTipoItemUseCaseInput } from "./update-tipoitem-input";
+import { UpdateTipoItemUseCaseOutput } from "./update-tipoitem-output";
 
-export class UpdateTypeItemUseCase {
-    constructor(private readonly typeItemRepository: ItemTypeRepository) {}
+export class UpdateTipoItemUseCase {
+    private tipoItemRepository: ItemTypeRepository;
+    constructor(private repositoryFactory: RepositoryFactory) {
+        this.tipoItemRepository = this.repositoryFactory.createItemTypeRepository();
+    }
 
-    execute(input: UpdateTypeItemUseCaseInput): UpdateTypeItemUseCaseOutput{
+    async execute(input: UpdateTipoItemUseCaseInput): Promise<UpdateTipoItemUseCaseOutput>{
+        if(!input.id){
+            throw new Error('Falta informações');
+        }else{
+            const novotipoitem = new TipoItem(input.nome, input.id)
+            await this.tipoItemRepository.update(novotipoitem);
+        }
         return {}
     }
 }

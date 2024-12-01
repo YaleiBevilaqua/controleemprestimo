@@ -1,1 +1,4 @@
-export type UpdateTypeItemUseCaseInput = {}
+export type UpdateTipoItemUseCaseInput = {
+    id: string;
+    nome: string;
+}

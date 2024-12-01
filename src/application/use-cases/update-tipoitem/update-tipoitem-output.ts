@@ -1,1 +1,1 @@
-export type UpdateTypeItemUseCaseOutput = {}
+export type UpdateTipoItemUseCaseOutput = {}

@@ -6,18 +6,23 @@ import { UpdateItemUseCaseInput } from "./update-item-input";
 import { UpdateItemUseCaseOutput } from "./update-item-output";
 
 export class UpdateItemUseCase {
-        constructor(private readonly itemRepository:ItemRepository,
-            private readonly itemTypeRepository:ItemTypeRepository
-        ){}
-    
-    
+    private itemRepository: ItemRepository;
+    private itemTypeRepository: ItemTypeRepository;
+        constructor(private repositoryFactory: RepositoryFactory){
+            this.itemRepository = this.repositoryFactory.createItemRepository()
+            this.itemTypeRepository = this.repositoryFactory.createItemTypeRepository()
+        }
 
-//     execute(input: UpdateItemUseCaseInput): UpdateItemUseCaseOutput{
-//         const item = this.itemRepository.getById(input.id);
-//         const Tipo_item= this.itemRepository.getById(input.tipoItemId);
-
-//         const novoItem = new Item(input.nome, Tipo_item, item.getid())
-//         this.itemRepository.update(novoItem);
-//         return {id: item.getid() }
-//     }
+    async execute(input: UpdateItemUseCaseInput): Promise<UpdateItemUseCaseOutput>{
+        if (!input.id) {
+         throw new Error('É necessário um ID');
+        }else if(!input.tipoItemId){
+            throw new Error('É necessário um tipo de item');
+        }else {
+            const tipoitem = await this.itemTypeRepository.getById(input.tipoItemId);
+            const novoitem = new Item(input.nome, tipoitem, input.id);
+            await this.itemRepository.update(novoitem)
+        }
+        return{} 
+     }
  }

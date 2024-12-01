@@ -3,6 +3,7 @@ import { RepositoryFactory } from "../../domain/repository/repository-factory";
 import { UsuarioRepository } from "../../domain/repository/usuario-repository";
 import { CreateUsuarioUseCase } from "../use-cases/create-usuario/create-usuario-usecase";
 import { GetAllUsuariosUseCase } from "../use-cases/get-all-usuario/get-usuarios-usecase";
+import { UpdatePessoaUseCase } from "../use-cases/update-pessoa/update-pessoa-usecase";
 import { UpdateUsuarioUseCase } from "../use-cases/update-usuario/update-usuario-usecase";
 
 export class UsuarioController{
@@ -20,6 +21,15 @@ export class UsuarioController{
             message: e.message
         }
 
+        }
+    }
+
+    async update(input: any){
+        try{
+            const updateUsuarioUseCase = new UpdatePessoaUseCase(this.repositoryFactory);
+            return await updateUsuarioUseCase.execute(input);
+        }catch (error) {
+            throw new Error('Falha em atualizar o usuario')
         }
     }
 }

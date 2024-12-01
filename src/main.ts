@@ -91,6 +91,19 @@ app.post('/tipo_item', async (request, response) => {
     response.send(await tipoItemController.create(request.body));
 })
 
+app.put('/pessoas/:id', async (request, response) => {
+    response.send(await pessoaController.update(request.body));
+})
+
+app.put('/usuarios/:id', async (request, response) => {
+    response.send(await usuarioController.update(request.body))
+})
+
+app.put('tipos_item/:id', async (request, response) => {
+    response.send(await tipoItemController.update(request.body))
+})
+
+
 //app.delete('/items/:id', (request, response) => {
 //    const id = request.params.id;
 //    response.send(itemsController.delete(id));

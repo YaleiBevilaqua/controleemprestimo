@@ -22,7 +22,17 @@ export class PessoaController{
                 message: e.message
             }
     }   
-     }
+    }
+
+    async update(input: any){
+        try{
+        const updatePessoaUseCase = new UpdatePessoaUseCase(this.repositoryFactory);
+        return await updatePessoaUseCase.execute(input)
+        }catch (error){
+            throw new Error('Não foi possível atualizar esta pessoa')
+        }
+    }
+
     
 
     async create(input: any){
