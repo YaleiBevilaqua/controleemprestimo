@@ -11,7 +11,7 @@ export class ItemTypeRepositoryDatabase implements ItemTypeRepository{
     async getAll(): Promise<TipoItem[]> {
         const output = [];
         const itemTypesData = await this.connection.execute(`
-            select id, nome from tipos_item`);
+            select tipos_item.id, tipos_item.nome from tipos_item`);
 
         for (const itemTypeData of itemTypesData) {
             const itemType = new TipoItem(
