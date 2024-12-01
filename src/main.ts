@@ -1,5 +1,6 @@
 import { config } from "dotenv";
 import express, { request, response } from 'express';
+import cors from "cors";
 import { ItemController } from './application/controller/item-controller';
 import { PostgresConnection } from './domain/infra/database/postgres-connection';
 import { ItemTypeRepositoryDatabase } from './domain/infra/repository/database/item-type-repository-database';
@@ -12,6 +13,7 @@ import { TipoItemController } from "./application/controller/tipoitem-controller
 
 config();
 const app = express();
+const corsa = require('cors');
 const port = 3000;
 app.use(express.json())
 app.all('*', function (req, res, next) {
@@ -20,6 +22,8 @@ app.all('*', function (req, res, next) {
             res.header('Access-Control-Allow-Headers', 'Content-Type, access-token');
             next();
         });
+
+app.use(corsa())
 
 const dadosconexao = {
     user: process.env.DB_USERNAME || 'postgres',
