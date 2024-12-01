@@ -103,8 +103,8 @@ export class UsuarioRepositoryDatabase implements UsuarioRepository{
 
     async create(usuario: Usuario): Promise<void> {
         await this.connection.execute(`
-            INSERT INTO usuarios(id, id_pessoa, nomeusuario, senha)
-            VALUES($1, $2, $3, $4)
+            INSERT INTO usuarios(nomeusuario, senha)
+            VALUES($1, $2)
             `, [usuario.getId(), usuario.getPessoa(), usuario.getUsername(), usuario.getPassword()])
     }
 

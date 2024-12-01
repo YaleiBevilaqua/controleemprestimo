@@ -11,12 +11,12 @@ export class ItemTypeRepositoryDatabase implements ItemTypeRepository{
     async getAll(): Promise<TipoItem[]> {
         const output = [];
         const itemTypesData = await this.connection.execute(`
-            select tipos_item.id, tipos_item.nome from tipos_item`);
+            select id, nome from tipos_item`);
 
         for (const itemTypeData of itemTypesData) {
             const itemType = new TipoItem(
-                itemTypeData.name,
-                itemTypeData.id
+                itemTypeData.nome,
+                itemTypeData.id,
             )
             output.push(itemType)
         }
@@ -46,8 +46,8 @@ export class ItemTypeRepositoryDatabase implements ItemTypeRepository{
 
     async create(itemType: TipoItem): Promise<void> {
         await this.connection.execute(`
-            insert into tipos_item (id, nome)
-            values($1, $2)`,
+            insert into tipos_item (nome)
+            values($1)`,
         [itemType.getId(), itemType.getName()])
     }
 

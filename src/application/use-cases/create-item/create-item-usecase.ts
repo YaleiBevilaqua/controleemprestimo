@@ -17,9 +17,6 @@ export class CreateItemUseCase {
         if (!input.name) {
             throw new Error('Nome do item não informado');
         }
-        if (!input.itemTypeId) {
-            throw new Error('Tipo do item não informado');
-        }
 
         const itemType = await this.itemTypeRepository.getById(input.itemTypeId);
 

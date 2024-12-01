@@ -18,15 +18,13 @@ export class EmprestimoRepositoryDatabase implements EmprestimoRepository{
             pessoas.id as id_pessoas, pessoas.nome as nome_pessoas, pessoas.documento,
             usuarios.id as id_usuarios, usuarios.nomeusuario, 
             itens.id as id_itens, itens.nome as nome_itens, 
-            tipos_item.id as id_tipos_item, tipos_item.nome as nome_tipos_item,
-            itens_epi.ca, itens_epi.validade
+            tipos_item.id as id_tipos_item, tipos_item.nome as nome_tipos_item
             FROM emprestimos
 
             LEFT JOIN pessoas ON pessoas.id = emprestimos.id_pessoa
             LEFT JOIN usuarios ON usuarios.id = emprestimos.id_usuario
             LEFT JOIN itens ON itens.id = emprestimos.id_item
             LEFT JOIN tipos_item ON tipos_item.id = itens.id_tipo_item
-            LEFT JOIN itens_epi ON itens_epi.id_item = itens.id
             `)
 
             for(const emprestimoData of emprestimosData){

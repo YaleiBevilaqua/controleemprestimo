@@ -22,8 +22,8 @@ export class GetAllUsuariosUseCase {
                     username: itemDaLista.getUsername(),
                     password: itemDaLista.getPassword(),
                     pessoa: {
-                        id: itemDaLista.getId(),
-                        name: itemDaLista.getUsername()
+                        id: itemDaLista.getPessoa().getId(),
+                        name: itemDaLista.getPessoa().getName()
                     }
 
                 }
