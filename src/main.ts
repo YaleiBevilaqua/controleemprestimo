@@ -97,6 +97,6 @@ app.post('Tipo_item', async (request, response) => {
 
 
 
-app.listen(4000 , () => {
-    console.log("Servidor iniciado na porta 4000")
+app.listen(5000 , () => {
+    console.log("Servidor iniciado na porta 5000")
 })
