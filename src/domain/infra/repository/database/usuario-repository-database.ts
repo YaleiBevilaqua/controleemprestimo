@@ -17,7 +17,7 @@ export class UsuarioRepositoryDatabase implements UsuarioRepository{
         	LEFT JOIN pessoas pe ON pe.id = us.id_pessoa
         	`)
             if (!usuariosData) {
-        throw new Error('usuario não encontrado');
+        throw new Error(' não encontrado');
     }
 
     	    for (const usuarioData of usuariosData) {
@@ -30,8 +30,9 @@ export class UsuarioRepositoryDatabase implements UsuarioRepository{
         	const usuario = new Usuario(
             	usuarioData.id,
                 usuarioData.nomeusuario,
-                pessoa,
-                usuarioData.senha
+                usuarioData.senha,
+                pessoa
+               
             )
             output.push(usuario)
         }
@@ -62,8 +63,8 @@ export class UsuarioRepositoryDatabase implements UsuarioRepository{
         	const usuario = new Usuario(
             	usuariosData.id,
                 usuariosData.nomeusuario,
-                pessoa,
-                usuariosData.senha
+                usuariosData.senha,
+                pessoa
             )
             
         return usuario
@@ -90,8 +91,9 @@ export class UsuarioRepositoryDatabase implements UsuarioRepository{
         	const usuario_entidade = new Usuario(
             	usuariosData.id,
                 usuariosData.nomeusuario,
+                usuariosData.senha,
                 pessoa,
-                usuariosData.senha
+                
             )
             
         return usuario_entidade

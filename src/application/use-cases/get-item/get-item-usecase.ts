@@ -5,7 +5,8 @@ import { GetItemUseCaseOutput } from "./get-item-usecase-output";
 
 export class GetItemUseCase {
     private itemRepository: ItemRepository; 
-        constructor(readonly repositoryFactory: RepositoryFactory){this.itemRepository =repositoryFactory.createItemRepository()}
+        constructor(readonly repositoryFactory: RepositoryFactory)
+        {this.itemRepository =repositoryFactory.createItemRepository()}
 
     async execute(input: GetItemUseCaseInput): Promise<GetItemUseCaseOutput>{
         const item = await this.itemRepository.getById(input.id)
