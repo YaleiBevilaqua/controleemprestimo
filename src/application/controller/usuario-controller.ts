@@ -12,4 +12,17 @@ export class UsuarioController{
         const getAllUsuarioUseCase = new GetAllUsuariosUseCase(this.repositoryFactory);
         return await getAllUsuarioUseCase.execute(input);
     }
+    async create(input: any){
+        try{
+            const createUsuarioUseCas= new CreateUsuarioUseCase(
+                this.repositoryFactory
+            );
+
+            return await createUsuarioUseCas.execute(input)
+        }catch(e:any){return{
+            message: e.message
+        }
+
+        }
+    }
 }

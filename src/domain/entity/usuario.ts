@@ -8,7 +8,7 @@ export class Usuario{
     private pessoa: Pessoa;
 
     //Método que vai ser executado quando a classe é instanciada, quando da um new item, executa.
-    constructor(username: string, password: string, pessoa: Pessoa, id?: string){
+    constructor(id: string, username: string, password: string, pessoa: Pessoa, ){
         this.username = username;
         if (!id){
             id = v4();

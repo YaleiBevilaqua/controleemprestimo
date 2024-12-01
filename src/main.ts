@@ -57,18 +57,22 @@ app.get('/emprestimos', async(request, response) => {
     response.send(await emprestimoController.getAll({}))
     })
 
-app.post('/items',async (request, response) => {
-        response.send(await itemsController.create(request.body));
-    });
+app.get('/items/:id', async (request, response) => {
+    const id = request.params.id;
+     response.send(await itemsController.getById(id));
+ });
 
-app.post('/pessoas',async (request, response) => {
-        response.send(await pessoaController.create(request.body));
-    });    
+ app.post('/items', async (request, response) => {
+    response.send(await itemsController.create(request.body));
+});
 
-// app.get('/items/:id', async (request, response) => {
-//     const id = request.params.id;
-//     response.send(await itemsController.getById(id));
-// });
+app.post('/pessoas', async (request, response) => {
+    response.send(await pessoaController.create(request.body));
+}); 
+
+app.post('/usuarios', async (request, response) => {
+    response.send(await usuarioController.create(request.body));
+});
 
 //app.delete('/items/:id', (request, response) => {
 //    const id = request.params.id;
