@@ -25,16 +25,10 @@ export class TipoItemController{
 
     async update(input: any){
         try{
-            const updateTipoItemUseCase = new UpdateTipoItemUseCase(this.repositoryFactory)
+            const updateTipoItemUseCase = new UpdateTipoItemUseCase(this.repositoryFactory);
             return await updateTipoItemUseCase.execute(input);
         }catch (error) {
-            throw new Error('Falha em atualizar o usuario')
+            throw new Error('Falha em atualizar')
         }
     }
-  
-
-//     update(input: any){
-//         const updateTypeItemUseCase = new UpdateTypeItemUseCase(this.repositoryFactory);
-//         updateTypeItemUseCase.execute(input);
-//     }
 }

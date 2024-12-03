@@ -27,7 +27,7 @@ export class UsuarioController{
 
     async update(input: any){
         try{
-            const updateUsuarioUseCase = new UpdatePessoaUseCase(this.repositoryFactory);
+            const updateUsuarioUseCase = new UpdateUsuarioUseCase(this.repositoryFactory);
             return await updateUsuarioUseCase.execute(input);
         }catch (error) {
             throw new Error('Falha em atualizar o usuario')
