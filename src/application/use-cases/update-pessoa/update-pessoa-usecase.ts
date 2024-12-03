@@ -13,7 +13,7 @@ export class UpdatePessoaUseCase {
     async execute(input: UpdatePessoaUseCaseInput): Promise<UpdatePessoaUseCaseOutput>{
         if(!input.id || !input.nome || !input.documento){
             throw new Error("Preencha todos os campos")
-        }else {
+        }else {  
             const novapessoa = new Pessoa(input.id, input.nome, input.documento);
             await this.pessoaRepository.update(novapessoa);
         }

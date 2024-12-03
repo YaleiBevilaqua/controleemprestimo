@@ -75,14 +75,14 @@ export class EmprestimoRepositoryDatabase implements EmprestimoRepository{
             pessoas.id as id_pessoas, pessoas.nome as nome_pessoas, pessoas.documento,
             usuarios.id as id_usuarios, usuarios.nomeusuario, 
             itens.id as id_itens, itens.nome as nome_itens, 
-            tipos_item.id as id_tipos_item, tipos_item.nome as nome_tipos_item,
+            tipos_item.id as id_tipos_item, tipos_item.nome as nome_tipos_item
             FROM emprestimos
 
             LEFT JOIN pessoas ON pessoas.id = emprestimos.id_pessoa
             LEFT JOIN usuarios ON usuarios.id = emprestimos.id_usuario
             LEFT JOIN itens ON itens.id = emprestimos.id_item
             LEFT JOIN tipos_item ON tipos_item.id = itens.id_tipo_item
-            where id = $1`, [id]);
+            where emprestimos.id = $1`, [id]);
 
             if(!emprestimoData){
                 throw new Error("Usuário não encontrado")
@@ -95,9 +95,9 @@ export class EmprestimoRepositoryDatabase implements EmprestimoRepository{
             )
             
             const usuario = new Usuario(
+                emprestimoData.id_usuarios,
                 emprestimoData.nomeusuario,
                 emprestimoData.senha,
-                emprestimoData.id_usuarios,
                 pessoa
                 
             )

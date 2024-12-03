@@ -52,9 +52,9 @@ app.get('/items', async(request, response) => {
     response.send(await tipoItemController.getAll({}));
  });
 
- app.get('/pessoas', async (request, response)=>{
-    response.send(await pessoaController.getAll({}))
- });
+app.get('/pessoas', async (request, response)=>{
+response.send(await pessoaController.getAll({}))
+});
 
 app.get('/usuarios', async (request, response) => {
     response.send(await usuarioController.getAll({}))
@@ -69,17 +69,22 @@ app.get('/items/:id', async (request, response) => {
      response.send(await itemsController.getById(id));
  });
 
- app.get('/pessoas/:id', async (request, response) => {
-    const id = request.params.id;
-    response.send(await pessoaController.getById(id));
- })
+app.get('/pessoas/:id', async (request, response) => {
+const id = request.params.id;
+response.send(await pessoaController.getById(id));
+})
 
- app.get('/usuarios/:id', async (request, response) => {
-    const id = request.params.id;
-    response.send(await usuarioController.getById(id));
- })
+app.get('/usuarios/:id', async (request, response) => {
+const id = request.params.id;
+response.send(await usuarioController.getById(id));
+})
 
- app.post('/items', async (request, response) => {
+app.get('/emprestimos/:id', async (request, response) => {
+const id = request.params.id;
+response.send(await emprestimoController.getById(id));
+})
+
+app.post('/items', async (request, response) => {
     response.send(await itemsController.create(request.body));
 });
 app.post('/emprestimos', async (request, response) => {
@@ -100,7 +105,10 @@ app.post('/tipo_item', async (request, response) => {
 })
 
 app.put('/pessoas/:id', async (request, response) => {
-    response.send(await pessoaController.update(request.body));
+    const id = request.params.id;
+    const body = request.body
+    const novapessoa = {id, ...body}
+    response.send(await pessoaController.update(novapessoa));
 })
 
 app.put('/usuarios/:id', async (request, response) => {

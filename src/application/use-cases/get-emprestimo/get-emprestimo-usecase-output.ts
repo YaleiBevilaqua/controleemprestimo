@@ -1,31 +1,32 @@
 type itemType = {
-    id: string;
-    name: string;
+    id: string
+    name: string
 }
 
-type item = {
-    id: string;
-    name: string;
-    itemType: itemType;
+type itemOutput = {
+    id: string
+    name: string
+    itemType: itemType
 }
 
-type pessoa = {
-    id: string;
-    name: string;
+type pessoaOutput = {
+    id: string
+    name: string
+    documento: string
 }
 
-type usuario = {
-    id: string;
-    username: string;
-    password: string;
-    colaborador: pessoa;
+type usuarioOutput = {
+    id: string
+    name: string
+    password: string
+    pessoa: pessoaOutput
 }
 
 export type GetEmprestimoUseCaseOutput = {
-    id: string | undefined;
-    item: item;
+    id: string | undefined; 
+    item: itemOutput;
+    pessoa: pessoaOutput;
+    usuario: usuarioOutput;
     dataEmprestimo: string;
     dataDevolucao: string | undefined;
-    pessoa: pessoa;
-    usuario: usuario;
 }
