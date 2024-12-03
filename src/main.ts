@@ -74,6 +74,11 @@ app.get('/items/:id', async (request, response) => {
     response.send(await pessoaController.getById(id));
  })
 
+ app.get('/usuarios/:id', async (request, response) => {
+    const id = request.params.id;
+    response.send(await usuarioController.getById(id));
+ })
+
  app.post('/items', async (request, response) => {
     response.send(await itemsController.create(request.body));
 });

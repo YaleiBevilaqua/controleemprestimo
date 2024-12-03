@@ -43,11 +43,11 @@ export class UsuarioRepositoryDatabase implements UsuarioRepository{
 
     async getById(id: string): Promise<Usuario> {
         const [ usuariosData ] = await this.connection.execute(`
-        	select us.id, us.nomeusuario, us.senha, 
+        	SELECT us.id, us.nomeusuario, us.senha, 
             pe.id as id_colaborador, pe.nome, pe.documento 
-            from usuarios us
+            FROM usuarios us
         	LEFT JOIN pessoas pe ON pe.id = us.id_pessoa
-        	where i.id = $1`, [id])
+        	where us.id = $1`, [id])
 
             if (!usuariosData) {
                 throw new Error('Item não encontrado');
