@@ -26,12 +26,15 @@ export class PessoaController{
 
     async update(input: any){
         try{
+            
         const updatePessoaUseCase = new UpdatePessoaUseCase(this.repositoryFactory);
+        console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaa")
         return await updatePessoaUseCase.execute(input)
+
         }catch (error){
             throw new Error('Não foi possível atualizar esta pessoa')
         }
-    }
+    } 
 
     
 

@@ -55,7 +55,7 @@ export class PessoaRepositoryDatabase implements PessoaRepository {
     async update(pessoa: Pessoa): Promise<void> {
          await this.connection.execute(`
             update pessoas set
-            nome = $1
+            nome = $1,
             documento = $2
             where id = $3`, 
             [pessoa.getName(), pessoa.getDocumento(), pessoa.getId()]);

@@ -130,12 +130,12 @@ export class EmprestimoRepositoryDatabase implements EmprestimoRepository{
         await this.connection.execute(`
             INSERT INTO emprestimos(id, data_emprestimo, data_devolução, id_pessoa, id_usuario, id_item)
             VALUES($1, $2, $3, $4, $5, $6)
-            `, [emprestimo.getId(), emprestimo.getDataEmprestimo(), emprestimo.getDataDevolucao(), emprestimo.getPessoa(), emprestimo.getUsuario(), emprestimo.getItem()])
+            `, [emprestimo.getId(), emprestimo.getDataEmprestimo(), emprestimo.getDataDevolucao(), emprestimo.getPessoa().getId(), emprestimo.getUsuario().getId(), emprestimo.getItem().getId()])
     }
     async update(emprestimo: Emprestimo): Promise<void> {
         await this.connection.execute(`
             update emprestimos set
-            data_emprestimo = $1
+            data_emprestimo = $1,
             data_devolucao = $2
             where id = $3`, 
             [emprestimo.getDataEmprestimo(), emprestimo.getDataDevolucao(), emprestimo.getId()])

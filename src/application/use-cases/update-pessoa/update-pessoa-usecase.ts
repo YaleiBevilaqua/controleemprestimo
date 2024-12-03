@@ -6,7 +6,8 @@ import { UpdatePessoaUseCaseOutput } from "./update-pessoa-output";
 
 export class UpdatePessoaUseCase {
     private pessoaRepository: PessoaRepository
-    constructor(private readonly repositoryFactory: RepositoryFactory){this.pessoaRepository=repositoryFactory.createPessoaRepository()}
+    constructor(private readonly repositoryFactory: RepositoryFactory)
+    {this.pessoaRepository=repositoryFactory.createPessoaRepository()}
 
 
     async execute(input: UpdatePessoaUseCaseInput): Promise<UpdatePessoaUseCaseOutput>{
