@@ -5,7 +5,7 @@ import { Pessoa } from "./pessoa";
 import { Usuario } from "./usuario";
 
 export class Emprestimo{
-    private id: string;
+    private id: string | undefined;
     private item: Item;
     private dataEmprestimo: Date;
     private dataDevolucao: Date | undefined;
@@ -13,9 +13,6 @@ export class Emprestimo{
     private usuario: Usuario
 
     constructor(item: Item, dataEmprestimo: Date, pessoa: Pessoa, usuario: Usuario, id?: string, dataDevolucao?: Date){
-        if (!id){
-            id = v4();
-        }
         this.id = id;
         this.item = item;
         this.dataEmprestimo = dataEmprestimo;
@@ -28,7 +25,7 @@ export class Emprestimo{
         return this.dataDevolucao
     }
 
-    getId(): string{
+    getId(): string | undefined{
         return this.id
     }
 
