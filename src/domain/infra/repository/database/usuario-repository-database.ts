@@ -112,10 +112,10 @@ export class UsuarioRepositoryDatabase implements UsuarioRepository{
     async update(usuario: Usuario): Promise<void> {
         await this.connection.execute(`
             update usuarios set
-            nomeusuario = $1
+            nomeusuario = $1,
             senha = $2
             where id = $3`, 
-            [usuario.getUsername(), usuario.getPassword()])
+            [usuario.getUsername(), usuario.getPassword(), usuario.getId()])
     }
 
 }

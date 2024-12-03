@@ -104,13 +104,12 @@ app.put('/pessoas/:id', async (request, response) => {
 })
 
 app.put('/usuarios/:id', async (request, response) => {
-    response.send(await usuarioController.update(request.body))
+    response.send(await usuarioController.update(request.body));
 })
 
-app.put('tipos_item/:id', async (request, response) => {
-    response.send(await tipoItemController.update(request.body))
+app.put('/tipos_item/:id', async (request, response) => {
+    response.send(await tipoItemController.update(request.body));
 })
-
 
 //app.delete('/items/:id', (request, response) => {
 //    const id = request.params.id;
