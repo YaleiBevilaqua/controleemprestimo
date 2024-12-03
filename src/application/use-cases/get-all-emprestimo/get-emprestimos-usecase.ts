@@ -13,8 +13,10 @@ export class GetAllEmprestimosUseCase{
         const listaDeEmprestimos = await this.emprestimoRepository.getAll();
 
         const output: GetAllEmprestimoUseCaseOutput[]=[];
+        
 
         for (const emprestimo of listaDeEmprestimos){
+            console.log(emprestimo.getUsuario(), 'usuarios')
             output.push(
                 {
                 id: emprestimo.getId(),
@@ -28,15 +30,17 @@ export class GetAllEmprestimosUseCase{
                 },
                 pessoa: {
                     id: emprestimo.getPessoa().getId(),
-                    name: emprestimo.getPessoa().getName()
+                    name: emprestimo.getPessoa().getName(),
+                    documento: emprestimo.getPessoa().getDocumento()
                 },
                 usuario: {
                     id: emprestimo.getUsuario().getId(),
                     name: emprestimo.getUsuario().getUsername(),
                     password: emprestimo.getUsuario().getPassword(),
-                    colaborador: {
+                    pessoa: {
                         id: emprestimo.getUsuario().getPessoa().getId(),
                         name: emprestimo.getUsuario().getPessoa().getName(),
+                        documento: emprestimo.getUsuario().getPessoa().getDocumento()
                     }
                 },
                 dataEmprestimo: emprestimo.getDataEmprestimo().toISOString(),

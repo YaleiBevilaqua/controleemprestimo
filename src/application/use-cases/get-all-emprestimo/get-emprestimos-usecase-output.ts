@@ -12,17 +12,18 @@ type itemOutput = {
 type pessoaOutput = {
     id: string
     name: string
+    documento: string
 }
 
 type usuarioOutput = {
     id: string
     name: string
     password: string
-    colaborador: pessoaOutput
+    pessoa: pessoaOutput
 }
 
 export type GetAllEmprestimoUseCaseOutput = {
-    id: string; 
+    id: string | undefined; 
     item: itemOutput;
     pessoa: pessoaOutput;
     usuario: usuarioOutput;
