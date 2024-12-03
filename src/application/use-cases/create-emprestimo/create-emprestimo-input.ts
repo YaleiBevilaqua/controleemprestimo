@@ -4,9 +4,9 @@ import { Usuario } from "../../../domain/entity/usuario"
 
 export type CreateEmprestimoUseCaseInput = {
     id: string
-    item: Item
+    id_item: Item
     dataEmprestimo: Date
     dataDevolucao: Date | undefined
-    pessoa: Pessoa
-    usuario: Usuario
+    id_pessoa: Pessoa
+    id_usuario: Usuario
 }

@@ -10,26 +10,27 @@ import { UpdateEmprestimoUseCase } from "../use-cases/update-emprestimo/update-e
 export class EmprestimoController{
     constructor(private repositoryFactory: RepositoryFactory
     ) {}
-    // constructor(
-    //     private readonly emprestimoRepository: EmprestimoRepository,
-    //     private readonly pessoaRepository: PessoaRepository,
-    //     private readonly usuarioRepository: UsuarioRepository,
-    //     private readonly itemRepository: ItemRepository
-    // ) {}
-
     async getAll(input: any){
         const emprestimos = new GetAllEmprestimosUseCase(this.repositoryFactory);
         return await emprestimos.execute(input);
 
     }
 
-    // create(input: any){
-    //     const createEmprestimoUseCase = new CreateEmprestimoUseCase(this.emprestimoRepository, this.pessoaRepository, this.usuarioRepository, this.itemRepository);
-    //     createEmprestimoUseCase.execute(input);
-    // }
+    async create(input: any){
+        try {
+            const createEmprestimoUseCase = new CreateEmprestimoUseCase(
+                this.repositoryFactory
+            );
+            return await createEmprestimoUseCase.execute(input);
+        } catch (e: any) {
+            return {
+                message: e.message
+            }
+        }
 
+    }
     // update(input: any){
     //     const updateEmprestimoUseCase = new UpdateEmprestimoUseCase(this.emprestimoRepository);
     //     updateEmprestimoUseCase.execute(input);
     // }
-}
+}2

@@ -28,7 +28,6 @@ export class PessoaController{
         try{
             
         const updatePessoaUseCase = new UpdatePessoaUseCase(this.repositoryFactory);
-        console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaa")
         return await updatePessoaUseCase.execute(input)
 
         }catch (error){
