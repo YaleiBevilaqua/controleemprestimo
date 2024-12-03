@@ -14,7 +14,7 @@ export class UpdateTipoItemUseCase {
         if(!input.id){
             throw new Error('Falta informações');
         }else{
-            const novotipoitem = new TipoItem(input.id, input.nome)
+            const novotipoitem = new TipoItem(input.nome, input.id)
             await this.tipoItemRepository.update(novotipoitem);
         }
         return {}

@@ -19,8 +19,10 @@ export class UpdateUsuarioUseCase {
         if(!input.id){
         throw new Error("Preencha todos os campos")
         }else {
+
             const pessoa = await this.pessoaRepository.getById(input.id_pessoa);
             const novousuario = new Usuario(input.id, input.username, input.password, pessoa);
+            console.log(novousuario, 'asdasdasds')
             await this.usuarioRepository.update(novousuario)
         }
         return {}

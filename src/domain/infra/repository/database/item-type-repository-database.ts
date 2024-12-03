@@ -35,7 +35,7 @@ export class ItemTypeRepositoryDatabase implements ItemTypeRepository{
         }
 
         const itemType = new TipoItem(
-            itemTypeData.name,
+            itemTypeData.nome,
             itemTypeData.id
         )
 

@@ -1,4 +1,4 @@
 export type GetTipoItemUseCaseOutput = {
     id: string;
-    name: string;
+    nome: string;
 }

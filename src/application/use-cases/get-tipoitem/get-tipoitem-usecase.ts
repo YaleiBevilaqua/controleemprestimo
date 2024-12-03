@@ -8,10 +8,10 @@ export class GetTipoItemUseCase{
     constructor (private repositoryFactory: RepositoryFactory){this.tipoItemRepository=repositoryFactory.createItemTypeRepository()}
 
     async execute(input: GetTipoItemUseCaseInput): Promise<GetTipoItemUseCaseOutput>{
-        const tipoItem = await this.tipoItemRepository.getById(input.id)
+        const tipoItem = await this.tipoItemRepository.getById(input.id);
         return {
             id: tipoItem.getId(),
-            name: tipoItem.getName()
+            nome: tipoItem.getName()
         }
     }
 }

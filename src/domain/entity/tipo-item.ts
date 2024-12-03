@@ -1,8 +1,8 @@
 import { v4 } from 'uuid';
 
 export class TipoItem{
-    private name: string;
     private id: string;
+    private nome: string;
 
     //Método que vai ser executado quando a classe é instanciada, quando da um new item, executa.
     constructor(name: string, id?: string){
@@ -10,7 +10,7 @@ export class TipoItem{
             id = v4();
         }
         this.id = id;
-        this.name = name;
+        this.nome = name;
     }
 
     getId():string{
@@ -18,6 +18,6 @@ export class TipoItem{
     }
 
     getName():string{
-        return this.name;
+        return this.nome;
     }
 }

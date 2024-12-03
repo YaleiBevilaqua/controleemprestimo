@@ -45,6 +45,8 @@ const usuarioController = new UsuarioController(repositoryFactory);
 const emprestimoController= new EmprestimoController(repositoryFactory);
 const tipoItemController = new TipoItemController(repositoryFactory);
 
+//GET ALL
+
 app.get('/items', async(request, response) => {
     response.send(await itemsController.getAll({}));
  });
@@ -64,9 +66,11 @@ app.get('/emprestimos', async(request, response) => {
     response.send(await emprestimoController.getAll({}))
     })
 
+//GET BY ID
+
 app.get('/items/:id', async (request, response) => {
     const id = request.params.id;
-     response.send(await itemsController.getById(id));
+    response.send(await itemsController.getById(id));
  });
 
 app.get('/pessoas/:id', async (request, response) => {
@@ -83,6 +87,14 @@ app.get('/emprestimos/:id', async (request, response) => {
 const id = request.params.id;
 response.send(await emprestimoController.getById(id));
 })
+
+
+app.get('/tipos_item/:id', async(request, response) => {
+    const id = request.params.id;
+    response.send(await tipoItemController.getById(id))
+})
+
+// POST
 
 app.post('/items', async (request, response) => {
     response.send(await itemsController.create(request.body));
@@ -104,6 +116,8 @@ app.post('/tipo_item', async (request, response) => {
     response.send(await tipoItemController.create(request.body));
 })
 
+//PUT
+
 app.put('/pessoas/:id', async (request, response) => {
     const id = request.params.id;
     const body = request.body
@@ -112,11 +126,17 @@ app.put('/pessoas/:id', async (request, response) => {
 })
 
 app.put('/usuarios/:id', async (request, response) => {
-    response.send(await usuarioController.update(request.body));
+    const id = request.params.id;
+    const body = request.body
+    const novousuario = {id, ...body}
+    response.send(await usuarioController.update(novousuario));
 })
 
 app.put('/tipos_item/:id', async (request, response) => {
-    response.send(await tipoItemController.update(request.body));
+    const id = request.params.id;
+    const body = request.body
+    const novotipoitem = {id, ...body}
+    response.send(await tipoItemController.update(novotipoitem));
 })
 
 //app.delete('/items/:id', (request, response) => {
