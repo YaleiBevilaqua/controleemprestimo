@@ -14,15 +14,20 @@ export class UpdateItemUseCase {
         }
 
     async execute(input: UpdateItemUseCaseInput): Promise<UpdateItemUseCaseOutput>{
+        console.log('3')
         if (!input.id) {
          throw new Error('É necessário um ID');
-        }else if(!input.tipoItemId){
-            throw new Error('É necessário um tipo de item');
-        }else {
-            const tipoitem = await this.itemTypeRepository.getById(input.tipoItemId);
-            const novoitem = new Item(input.nome, tipoitem, input.id);
-            await this.itemRepository.update(novoitem)
         }
+        console.log('4')
+        if(!input.itemTypeId){
+            throw new Error('É necessário um tipo de item');
+        }
+        console.log('5')
+        const tipoitem = await this.itemTypeRepository.getById(input.itemTypeId);
+        console.log('6')
+        const novoitem = new Item(input.name, tipoitem, input.id, input.validade);
+        console.log('7')
+        this.itemRepository.update(novoitem);
         return{} 
      }
  }

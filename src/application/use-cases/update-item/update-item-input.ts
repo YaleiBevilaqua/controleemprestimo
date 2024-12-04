@@ -1,6 +1,6 @@
 export type UpdateItemUseCaseInput = {
     id: string;
-    nome: string;   
-    tipoItemId: string;
-    validade: string
+    name: string;   
+    itemTypeId: string;
+    validade: string | undefined;
 }

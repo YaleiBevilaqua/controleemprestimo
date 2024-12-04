@@ -6,7 +6,7 @@ export class Pessoa{
     private documento: string;
 
     //Método que vai ser executado quando a classe é instanciada, quando da um new item, executa.
-    constructor(id: string, name: string, documento: string, ){
+    constructor(name: string, documento: string, id?: string){
         
         if (!id){
             id = v4();

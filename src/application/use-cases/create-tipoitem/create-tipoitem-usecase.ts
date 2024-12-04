@@ -13,10 +13,10 @@ export class CreateTipoItemUseCase {
 
   async execute(input: CreateTipoItemUseCaseInput){
         if (!input.nome) {
-        throw new Error('Nome do Tipo de item não informado');
+            throw new Error('Nome do Tipo de item não informado');
         }
         
-        const tipoItem = new TipoItem(input.id, input.nome);
+        const tipoItem = new TipoItem(input.nome);
 
         await this.itemTypeRepository.create(tipoItem);
         return{}

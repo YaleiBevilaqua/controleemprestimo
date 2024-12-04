@@ -39,6 +39,17 @@ export class ItemController{
         }
     }
 
+    async update(input: any){
+        try{
+            console.log('1')
+            const updateItemUseCase = new UpdateItemUseCase(this.repositoryFactory);
+            console.log('2')
+            return await updateItemUseCase.execute(input);
+        }catch (error){
+        }
+      
+    }
+
     //  update(input: UpdateItemUseCase {
     //      const updateItemUseCase = new UpdateItemUseCase(
     //          this.itemRepository,

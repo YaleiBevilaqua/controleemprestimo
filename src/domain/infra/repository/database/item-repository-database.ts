@@ -76,13 +76,17 @@ export default class ItemRepositoryDatabase implements ItemRepository {
 
 
     async update(item: Item): Promise<void> {
+        console.log(item)
+        console.log(item.getTipoItem())
         await this.connection.execute(`
             update itens set
+            
             nome = $1,
-            id_tipo_item = $2
-            where id = $3
+            id_tipo_item = $2,
+            validade = $3
+            where id = $4
             `,
-            [item.name, item.getTipoItem().getId(), item.id]);
+            [item.getName(), item.getTipoItem().getId(), item.getValidade(), item.id]);
     }
 
     

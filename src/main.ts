@@ -139,6 +139,13 @@ app.put('/tipos_item/:id', async (request, response) => {
     response.send(await tipoItemController.update(novotipoitem));
 })
 
+app.put('/items/:id', async (request, response) => {
+    const id = request.params.id;
+    const body = request.body
+    const novoitem = {id, ...body}
+    console.log(body)
+    response.send(await itemsController.update(novoitem));
+})
 //app.delete('/items/:id', (request, response) => {
 //    const id = request.params.id;
 //    response.send(itemsController.delete(id));
@@ -155,6 +162,6 @@ app.put('/tipos_item/:id', async (request, response) => {
 
 
 
-app.listen(5000 , () => {
-    console.log("Servidor iniciado na porta 5000")
+app.listen(5001 , () => {
+    console.log("Servidor iniciado na porta 5001")
 })
