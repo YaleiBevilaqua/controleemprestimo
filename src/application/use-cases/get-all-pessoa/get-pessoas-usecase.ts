@@ -12,13 +12,13 @@ export class GetAllPessoaUseCase{
         const listaDePessoas = await this.pessoaRepository.getAll();
 
         const output: GetAllPessoaUseCaseOutput[] = [];
-
+        
         for(const itemdalista of listaDePessoas){
             output.push(
                 {
                 id: itemdalista.getId(),
                 name: itemdalista.getName(),
-                documento:itemdalista.getDocumento(),
+                documento:itemdalista.getDocumento()
                 }
             )
             

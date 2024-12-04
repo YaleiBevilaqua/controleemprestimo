@@ -1,7 +1,7 @@
 import { v4 } from 'uuid';
 
 export class Pessoa{
-    private id: string;
+    readonly id: string;
     private name: string;
     private documento: string;
 

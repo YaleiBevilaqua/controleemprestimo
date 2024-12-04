@@ -28,6 +28,7 @@ export class GetAllEmprestimosUseCase{
                         name: emprestimo.getItem().getTipoItem().getName(),
                     }
                 },
+                dataEmprestimo: emprestimo.getDataEmprestimo().toISOString(),
                 pessoa: {
                     id: emprestimo.getPessoa().getId(),
                     name: emprestimo.getPessoa().getName(),
@@ -43,8 +44,7 @@ export class GetAllEmprestimosUseCase{
                         documento: emprestimo.getUsuario().getPessoa().getDocumento()
                     }
                 },
-                dataEmprestimo: emprestimo.getDataEmprestimo().toISOString(),
-                dataDevolucao: emprestimo.getDataDevolucao()?.toISOString()
+                dataDevolucao: emprestimo.getDataDevolucao()
                 }
             )
         }

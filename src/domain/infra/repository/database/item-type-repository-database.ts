@@ -46,8 +46,8 @@ export class ItemTypeRepositoryDatabase implements ItemTypeRepository{
 
     async create(itemType: TipoItem): Promise<void> {
         await this.connection.execute(`
-            insert into tipos_item (nome)
-            values($1)`,
+            insert into tipos_item (id, nome)
+            values($1, $2)`,
         [itemType.getId(), itemType.getName()])
     }
 

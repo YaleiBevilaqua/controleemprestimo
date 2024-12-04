@@ -11,9 +11,12 @@ export class CreatePessoaUseCase {
     }
 
     async execute(input: CreatePessoaUseCaseInput){
-        if (!input.name || !input.documento) {
-            throw new Error('Dado não informado');
-        } 
+        if (!input.name) {
+            throw new Error('Nome não informado');
+        }
+        if (!input.documento) {
+            throw new Error('Documento não informado');
+        }
  
         const pessoa = new Pessoa(input.name, input.documento);
 

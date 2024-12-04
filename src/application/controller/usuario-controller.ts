@@ -14,6 +14,7 @@ export class UsuarioController{
         const getAllUsuarioUseCase = new GetAllUsuariosUseCase(this.repositoryFactory);
         return await getAllUsuarioUseCase.execute(input);
     }
+    
     async create(input: any){
         try{
             const createUsuarioUseCase= new CreateUsuarioUseCase(this.repositoryFactory);

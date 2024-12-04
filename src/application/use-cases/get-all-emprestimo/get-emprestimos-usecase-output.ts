@@ -25,8 +25,8 @@ type usuarioOutput = {
 export type GetAllEmprestimoUseCaseOutput = {
     id: string | undefined; 
     item: itemOutput;
+    dataEmprestimo: string;
     pessoa: pessoaOutput;
     usuario: usuarioOutput;
-    dataEmprestimo: string;
     dataDevolucao: string | undefined;
 }

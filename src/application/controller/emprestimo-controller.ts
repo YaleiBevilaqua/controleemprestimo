@@ -41,8 +41,15 @@ export class EmprestimoController{
             }
         }
     }
-    // update(input: any){
-    //     const updateEmprestimoUseCase = new UpdateEmprestimoUseCase(this.emprestimoRepository);
-    //     updateEmprestimoUseCase.execute(input);
-    // }
-}2
+    
+    async update(input: any){
+        try{
+            console.log("1")
+            const updateEmprestimoUseCase= new UpdateEmprestimoUseCase(this.repositoryFactory);
+            console.log("2")
+            return await updateEmprestimoUseCase.execute(input)
+        }catch(error){
+            throw new Error ("falha ao atualizar")
+        }
+    }
+}

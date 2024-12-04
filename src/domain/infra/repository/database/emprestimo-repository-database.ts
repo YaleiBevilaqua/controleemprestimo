@@ -29,21 +29,21 @@ export class EmprestimoRepositoryDatabase implements EmprestimoRepository{
 
             for(const emprestimoData of emprestimosData){
             const pessoa = new Pessoa(
-                emprestimoData.id_pessoas,
                 emprestimoData.nome_pessoas,
                 emprestimoData.documento,
+                emprestimoData.id_pessoas
             )
             
             const usuario = new Usuario(
-                emprestimoData.id_usuarios,
                 emprestimoData.nomeusuario,
                 emprestimoData.senha,
-                pessoa
+                pessoa,
+                emprestimoData.id_usuarios
             )
 
             const itemType = new TipoItem(
-                emprestimoData.id_tipos_item,
-                emprestimoData.nome_tipos_item
+                emprestimoData.nome_tipos_item,
+                emprestimoData.id_tipos_item
             )
 
             const item = new Item(
@@ -57,9 +57,10 @@ export class EmprestimoRepositoryDatabase implements EmprestimoRepository{
                 emprestimoData.data_emprestimo,
                 pessoa,
                 usuario,
-                emprestimoData.id_emprestimo,
-                emprestimoData.data_devolucao
+                emprestimoData.data_devolucao,
+                emprestimoData.id_emprestimo
             )
+            console
 
             output.push(emprestimo)
         }
@@ -85,26 +86,27 @@ export class EmprestimoRepositoryDatabase implements EmprestimoRepository{
             where emprestimos.id = $1`, [id]);
 
             if(!emprestimoData){
-                throw new Error("Usuário não encontrado")
+                throw new Error("Emprestimo não encontrado")
             }
 
             const pessoa = new Pessoa(
-                emprestimoData.id_pessoas,
                 emprestimoData.nome_pessoas,
-                emprestimoData.documento
+                emprestimoData.documento,
+                emprestimoData.id_pessoas
             )
             
             const usuario = new Usuario(
-                emprestimoData.id_usuarios,
+                
                 emprestimoData.nomeusuario,
                 emprestimoData.senha,
-                pessoa
+                pessoa,
+                emprestimoData.id_usuarios
                 
             )
 
             const itemType = new TipoItem(
-                emprestimoData.id_tipos_item,
-                emprestimoData.nome_tipos_item
+                emprestimoData.nome_tipos_item,
+                emprestimoData.id_tipos_item
             )
 
             const item = new Item(
@@ -118,8 +120,8 @@ export class EmprestimoRepositoryDatabase implements EmprestimoRepository{
                 emprestimoData.data_emprestimo,
                 pessoa,
                 usuario,
-                emprestimoData.id_emprestimo,
-                emprestimoData.data_devolucao
+                emprestimoData.data_devolucao,
+                emprestimoData.id_emprestimo
             )
             return emprestimo
             
@@ -128,17 +130,21 @@ export class EmprestimoRepositoryDatabase implements EmprestimoRepository{
         await this.connection.execute(`
             INSERT INTO emprestimos(data_emprestimo, data_devolucao, id_pessoa, id_usuario, id_item)
             VALUES($1, $2, $3, $4, $5)
-            `, [emprestimo.getDataEmprestimo(), emprestimo.getDataDevolucao(), emprestimo.getPessoa(), emprestimo.getUsuario(), emprestimo.getItem()])
+            `, [emprestimo.getDataEmprestimo(), emprestimo.getDataDevolucao(), emprestimo.getPessoa().getId(), emprestimo.getUsuario().getId(), emprestimo.getItem().getId()])
     }
 
 
     async update(emprestimo: Emprestimo): Promise<void> {
         await this.connection.execute(`
             update emprestimos set
-            data_emprestimo = $1,
-            data_devolucao = $2
-            where id = $3`, 
-            [emprestimo.getDataEmprestimo(), emprestimo.getDataDevolucao(), emprestimo.getId()])
+            id_item = $1
+            data_emprestimo = $2,
+            id_pessoa = $3,
+            id_usuario = $4,
+            data_devolucao = $5
+
+            where id = $6`,
+            [emprestimo.getItem(), emprestimo.getDataEmprestimo(), emprestimo.getPessoa(), emprestimo.getUsuario(), emprestimo.getDataDevolucao(), emprestimo.id]);
     }
 
     

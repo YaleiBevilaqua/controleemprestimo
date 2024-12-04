@@ -9,10 +9,10 @@ import { CreateEmprestimoUseCaseOutput } from "./create-emprestimo-output";
 
 export class CreateEmprestimoUseCase {
 
-    private readonly emprestimoRepository: EmprestimoRepository
-    private readonly pessoaRepository: PessoaRepository
-    private readonly usuarioRepository: UsuarioRepository
-    private readonly itemRepository: ItemRepository
+    private  emprestimoRepository: EmprestimoRepository
+    private  pessoaRepository: PessoaRepository
+    private  usuarioRepository: UsuarioRepository
+    private  itemRepository: ItemRepository
     
     constructor(private repositoryFactory: RepositoryFactory
     ){
@@ -23,11 +23,14 @@ export class CreateEmprestimoUseCase {
 
     }
 
-    execute(input: CreateEmprestimoUseCaseInput): CreateEmprestimoUseCaseOutput{
+    async execute(input: CreateEmprestimoUseCaseInput): Promise<CreateEmprestimoUseCaseOutput>{
+        const item = await this.itemRepository.getById(input.id_item)
+        const pessoa = await this.pessoaRepository.getById(input.id_pessoa)
+        const usuario = await this.usuarioRepository.getById(input.id_usuario)
         
-        const emprestimo = new Emprestimo(input.id_item, input.dataEmprestimo, input.id_pessoa, input.id_usuario, input.id, input.dataDevolucao)
+        const emprestimo = new Emprestimo(item, input.dataEmprestimo, pessoa, usuario, input.dataDevolucao)
 
-        this.emprestimoRepository.create(emprestimo)
+        await this.emprestimoRepository.create(emprestimo)
         return{};
     }
 }

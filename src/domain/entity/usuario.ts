@@ -14,8 +14,9 @@ export class Usuario{
             id = v4();
         }
         this.id = id;
-        this.pessoa = pessoa;
+        
         this.username = username;
+        this.pessoa = pessoa;
         this.password = password;
     }
 

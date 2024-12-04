@@ -38,7 +38,7 @@ export class GetEmprestimoUseCase{
                     }
                 },
                 dataEmprestimo: emprestimo.getDataEmprestimo().toISOString(),
-                dataDevolucao: emprestimo.getDataDevolucao()?.toISOString()
+                dataDevolucao: emprestimo.getDataDevolucao()
 
         }
 

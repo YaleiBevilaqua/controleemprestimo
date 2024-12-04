@@ -11,12 +11,23 @@ export class UpdatePessoaUseCase {
 
 
     async execute(input: UpdatePessoaUseCaseInput): Promise<UpdatePessoaUseCaseOutput>{
-        if(!input.id || !input.nome || !input.documento){
-            throw new Error("Preencha todos os campos")
-        }else {  
-            const novapessoa = new Pessoa(input.id, input.nome, input.documento);
-            await this.pessoaRepository.update(novapessoa);
+        console.log('3')
+        if (!input.id) {
+            throw new Error("O campo 'id' deve ser preenchido.");
         }
+        console.log('4')
+        if (!input.nome) {
+            throw new Error("O campo 'nome' deve ser preenchido.");
+        }
+        console.log('5')
+        if (!input.documento) {
+            throw new Error("O campo 'documento' deve ser preenchido.");
+        }
+
+        console.log('6')
+        const novapessoa = new Pessoa(input.nome, input.documento, input.id);
+        console.log('7')
+        this.pessoaRepository.update(novapessoa);
         return {}
     }
 }

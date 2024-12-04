@@ -3,10 +3,9 @@ import { Pessoa } from "../../../domain/entity/pessoa"
 import { Usuario } from "../../../domain/entity/usuario"
 
 export type CreateEmprestimoUseCaseInput = {
-    id: string
-    id_item: Item
+    id_item: string
     dataEmprestimo: Date
-    dataDevolucao: Date | undefined
-    id_pessoa: Pessoa
-    id_usuario: Usuario
+    dataDevolucao: string | undefined
+    id_pessoa: string
+    id_usuario: string
 }

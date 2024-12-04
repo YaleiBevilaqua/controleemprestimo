@@ -89,7 +89,7 @@ response.send(await emprestimoController.getById(id));
 })
 
 
-app.get('/tipos_item/:id', async(request, response) => {
+app.get('/tipo_items/:id', async(request, response) => {
     const id = request.params.id;
     response.send(await tipoItemController.getById(id))
 })
@@ -99,6 +99,7 @@ app.get('/tipos_item/:id', async(request, response) => {
 app.post('/items', async (request, response) => {
     response.send(await itemsController.create(request.body));
 });
+
 app.post('/emprestimos', async (request, response) => {
     response.send(await emprestimoController.create(request.body));
 });
@@ -112,7 +113,7 @@ app.post('/usuarios', async (request, response) => {
     response.send(await usuarioController.create(request.body));
 });
 
-app.post('/tipo_item', async (request, response) => {
+app.post('/tipo_items', async (request, response) => {
     response.send(await tipoItemController.create(request.body));
 })
 
@@ -132,7 +133,7 @@ app.put('/usuarios/:id', async (request, response) => {
     response.send(await usuarioController.update(novousuario));
 })
 
-app.put('/tipos_item/:id', async (request, response) => {
+app.put('/tipo_items/:id', async (request, response) => {
     const id = request.params.id;
     const body = request.body
     const novotipoitem = {id, ...body}
@@ -146,22 +147,15 @@ app.put('/items/:id', async (request, response) => {
     console.log(body)
     response.send(await itemsController.update(novoitem));
 })
-//app.delete('/items/:id', (request, response) => {
-//    const id = request.params.id;
-//    response.send(itemsController.delete(id));
-//});
-
-// app.put('/items/:id', (request, response) => {
-//     const id = request.params.id;
-//     const body = request.body;
-//     response.send(itemsController.update({
-//         id,
-//         ...body
-//     }));
-// });
+app.put('/emprestimos/:id', async (request, response)=>{
+    const id = request.params.id;
+    const body = request.body
+    const novoEmprestimo = {id, ...body}
+    console.log(novoEmprestimo)
+    response.send(await emprestimoController.update(novoEmprestimo));
+})
 
 
-
-app.listen(5001 , () => {
-    console.log("Servidor iniciado na porta 5001")
+app.listen(5000 , () => {
+    console.log("Servidor iniciado na porta 5000")
 })

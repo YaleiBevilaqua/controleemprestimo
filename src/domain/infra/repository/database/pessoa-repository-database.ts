@@ -14,9 +14,9 @@ export class PessoaRepositoryDatabase implements PessoaRepository {
 
             for(const pessoaData of pessoasData){
         		const pessoa = new Pessoa(
-            	pessoaData.id,
                 pessoaData.nome,
-                pessoaData.documento
+                pessoaData.documento,
+                pessoaData.id
                 )
                 output.push(pessoa)
             }
@@ -35,9 +35,10 @@ export class PessoaRepositoryDatabase implements PessoaRepository {
         }
 
         const pessoa = new Pessoa(
-            pessoaData.id,
+            
             pessoaData.nome,
-            pessoaData.documento
+            pessoaData.documento,
+            pessoaData.id
         )
 
         return pessoa
@@ -53,11 +54,14 @@ export class PessoaRepositoryDatabase implements PessoaRepository {
 
 
     async update(pessoa: Pessoa): Promise<void> {
+        console.log(pessoa)
          await this.connection.execute(`
             update pessoas set
             nome = $1,
             documento = $2
             where id = $3`, 
-            [pessoa.getName(), pessoa.getDocumento(), pessoa.getId()]);
+            [pessoa.getName(), pessoa.getDocumento(), pessoa.id]);
+        
     }
+    
 }

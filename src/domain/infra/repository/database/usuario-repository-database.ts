@@ -22,17 +22,17 @@ export class UsuarioRepositoryDatabase implements UsuarioRepository{
     
     	    for (const usuarioData of usuariosData) {
                 const pessoa = new Pessoa(
-            	usuarioData.id_pessoa,
+            	
                 usuarioData.nome,
-                usuarioData.documento
+                usuarioData.documento,
+                usuarioData.id_pessoa
         	)
-
         	const usuario = new Usuario(
-            	usuarioData.id,
+            	
                 usuarioData.nomeusuario,
                 usuarioData.senha,
                 pessoa,
-               
+                usuarioData.id
             )
             output.push(usuario)
         }        
@@ -44,7 +44,7 @@ export class UsuarioRepositoryDatabase implements UsuarioRepository{
     async getById(id: string): Promise<Usuario> {
         const [ usuariosData ] = await this.connection.execute(`
         	SELECT us.id, us.nomeusuario, us.senha, 
-            pe.id as id_colaborador, pe.nome, pe.documento 
+            pe.id as id_pessoa, pe.nome, pe.documento 
             FROM usuarios us
         	LEFT JOIN pessoas pe ON pe.id = us.id_pessoa
         	where us.id = $1`, [id])
@@ -54,16 +54,17 @@ export class UsuarioRepositoryDatabase implements UsuarioRepository{
             }
 
         	const pessoa = new Pessoa(
-            	usuariosData.id_colaborador,
                 usuariosData.nome,
-                usuariosData.documento
+                usuariosData.documento,
+                usuariosData.id
         	)
 
         	const usuario = new Usuario(
-            	usuariosData.id,
+            	
                 usuariosData.nomeusuario,
                 usuariosData.senha,
                 pessoa,
+                usuariosData.id
             )
             
         return usuario
@@ -80,7 +81,6 @@ export class UsuarioRepositoryDatabase implements UsuarioRepository{
             if (!usuariosData) {
                 throw new Error('Item não encontrado');
             }
-
         	const pessoa = new Pessoa(
             	usuariosData.id_colaborador,
                 usuariosData.nome,
@@ -88,10 +88,10 @@ export class UsuarioRepositoryDatabase implements UsuarioRepository{
         	)
 
         	const usuario_entidade = new Usuario(
-            	usuariosData.id,
                 usuariosData.nomeusuario,
                 usuariosData.senha,
                 pessoa,
+                usuariosData.id
             )
             
         return usuario_entidade
