@@ -1,0 +1,66 @@
+http://localhost:5000/tipo_items
+post 
+{
+	
+		"nome": "meias2"
+	}
+put 
+
+{
+		"nome": "meias2-atualizada"
+	}
+
+http://localhost:5000/items
+post 
+{
+		"name": "bota",
+		"itemTypeId": "893bfcc9-08e9-4233-95e4-5e0b0d3fcd6d"
+		}
+put 
+{
+		"name": "bota-atualizada",
+		"itemTypeId": "893bfcc9-08e9-4233-95e4-5e0b0d3fcd6d"
+		}
+
+http://localhost:5000/pessoas
+post 
+{
+		"name": "clebin",
+		"documento": "222.645.987-00"
+	}
+put 
+{
+		"nome": "clebin-atualizado",
+		"documento": "222.645.987-00"
+	}
+
+http://localhost:5000/usuarios
+post 
+{
+		"username": "admin1234--777",
+		"password": "admin1234",
+		"id_pessoa":  "36afca8f-cab1-4b7c-bc10-eac18d1014b7"
+}
+put
+{
+	"username": "admin1234--777-atualizado",
+	"password": "admin1234",
+	"id_pessoa":  "36afca8f-cab1-4b7c-bc10-eac18d1014b7"
+}
+http://localhost:5000/emprestimos
+post
+{
+	"id_item": "e91cc285-b3b7-46af-8696-1d873cef82d9",
+	"dataEmprestimo": "2024-11-30T18:25:00.000Z",
+	"id_pessoa": "e0913462-225c-4233-bce6-1b70d304143e",
+	"usuario": "d93395b3-2b5d-4e10-b5a8-109a3f1635ce",
+	"dataDevolucao": null
+}
+put
+{
+	"id_item": "e91cc285-b3b7-46af-8696-1d873cef82d9",
+	"dataEmprestimo": "2024-11-30T18:25:00.000Z",
+	"id_pessoa": "e0913462-225c-4233-bce6-1b70d304143e",
+	"usuario": "d93395b3-2b5d-4e10-b5a8-109a3f1635ce",
+	"dataDevolucao": null
+}
